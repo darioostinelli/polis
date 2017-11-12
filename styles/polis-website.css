@@ -1,0 +1,27 @@
+@CHARSET "ISO-8859-1";
+body{
+	margin: 0;
+	padding: 0;
+}
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   	background-size: 100% 100%;
+}
+.banner{
+	position:fixed;
+	background-color: rgba(255,255,255, 0.8);
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+.banner banner-cell{
+	display: table-cell;
+	padding: 5px;
+}
+/*** 	DESKTOP 	***/
+@media only screen and (orientation: landscape){
+	
+}
