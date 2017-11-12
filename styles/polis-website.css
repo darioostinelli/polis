@@ -2,26 +2,36 @@
 body{
 	margin: 0;
 	padding: 0;
+	font-family: 'Poppins', sans-serif;
 }
 .parallax {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-   	background-size: 100% 100%;
 }
 .banner{
 	position:fixed;
-	background-color: rgba(255,255,255, 0.8);
+	background-color: rgba(205,205,205, 0.8);
 	display: table;
 	table-layout: fixed;
 	width: 100%;
 }
-.banner banner-cell{
+.banner-cell{
 	display: table-cell;
 	padding: 5px;
 }
+.login{
+	text-align: right;
+	vertical-align: middle;
+	padding-right: 35px;
+}
+.login:hover{
+	text-decoration: underline;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
-	
+	.parallax {
+	   	background-size: 100% 100%;
+	}
 }
