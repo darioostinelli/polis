@@ -46,7 +46,7 @@ body{
 .floating-container h1{
 
 }
-.floating-container p{
+.floating-container .title-paragraph{
 	font-size: 15px;
 	 transform:scale(1,2); /* W3C */
 	 margin-left: 0;
@@ -84,14 +84,13 @@ body{
 	.floating-container{
 		position: relative;
 		padding: 35px;
-		left: 10%;
-		right: 10%;
+		
 	}
 	.floating-container h1{
 		transform: scale(1, 1.5);
 	    font-weight: 300;
 	}
-	.floating-container p{
+	.floating-container .title-paragraph{
 		font-size: 15px;
 		 transform:scale(1, 2); /* W3C */
 		 
