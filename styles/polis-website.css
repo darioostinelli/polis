@@ -38,9 +38,35 @@ body{
 	color: #333333;
 	font-size: 12px;
 }
+.floatingContainer{
+	position: relative;
+	padding: 35px;
+}
+.floatingContainer h1{
+	
+}
+.floatingContainer p{
+	font-size: 15px;
+	 transform:scale(1,2); /* W3C */
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.parallax {
 	   	background-size: 100% 100%;
+	}
+	
+	.floatingContainer{
+		position: relative;
+		padding: 35px;
+		left: 10%;
+	}
+	.floatingContainer h1{
+		transform: scale(1,2);
+	    font-weight: 300;
+	}
+	.floatingContainer p{
+		font-size: 15px;
+		 transform:scale(1,2); /* W3C */
+		 margin: 30px;
 	}
 }
