@@ -2,26 +2,116 @@
 body{
 	margin: 0;
 	padding: 0;
+	font-family: 'Poppins', sans-serif;
 }
 .parallax {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-   	background-size: 100% 100%;
 }
 .banner{
 	position:fixed;
-	background-color: rgba(255,255,255, 0.8);
+	background-color: rgba(205,205,205, 0.8);
 	display: table;
 	table-layout: fixed;
 	width: 100%;
 }
-.banner banner-cell{
+.banner-cell{
 	display: table-cell;
 	padding: 5px;
 }
+.login{
+	text-align: right;
+	vertical-align: middle;
+	padding-right: 35px;
+}
+.login:hover{
+	text-decoration: underline;
+}
+.footer{
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	color: #333333;
+	font-size: 12px;
+}
+.floating-container{
+	position: relative;
+	padding: 35px;
+	width: fit-content;
+}
+.floating-container h1{
+
+}
+.floating-container .title-paragraph{
+	font-size: 15px;
+	 transform:scale(1,2); /* W3C */
+	 margin-left: 0;
+}
+
+.red{
+	color: #f44141;
+}
+.blue{
+	color: #4168f4;
+}
+.green{
+	color: #17a536;
+}
+.yellow{
+	color: #f4bb41;
+}
+.uppercase{
+	text-transform: uppercase;
+}
+.icon{
+	width: 40px;
+	align: left;
+}
+
+.cell-layout{
+		margin: 30px;
+	}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
+	.parallax {
+	   	background-size: 100% 100%;
+	}
+	
+	.floating-container{
+		position: relative;
+		padding: 35px;
+		
+	}
+	.floating-container h1{
+		transform: scale(1, 1.5);
+	    font-weight: 300;
+	}
+	.floating-container .title-paragraph{
+		font-size: 15px;
+		 transform:scale(1, 2); /* W3C */
+		 
+	}
+	.table-layout{
+	display: table;
+	table-layout: absolute;
+	width: 100%;
+	border-collapse:separate;
+    border-spacing: 150px 50px;
+	}
+	.row-layout{
+		display: table-row;
+	}
+	.cell-layout{
+		display: table-cell;
+		text-align: justify;
+		width: 30%;	
+	}
+	.cell-layout h3{
+		text-align: center;
+	}
 	
 }
