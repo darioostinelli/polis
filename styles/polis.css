@@ -1,14 +1,57 @@
 @CHARSET "ISO-8859-1";
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+}
+.red{
+	color: #f44141;
+}
+.blue{
+	color: #4168f4;
+}
+.green{
+	color: #17a536;
+}
+.yellow{
+	color: #f4bb41;
+}
+.uppercase{
+	text-transform: uppercase;
+}
+.icon{
+	width: 40px;
+	align: left;
+}
 .login-form{
 		position: fixed;
-		top: 0;
-		bottom: 0;
+		top: 30%;
 		left: 0;
 		right: 0;
 		margin: auto;
-		width: 300px;
-		height: 300px;
+		padding: 15px;
+		background: #41baf4;
+		width: fit-content;
+		color: white;
 	}
+.login-form input{
+	border: 2px solid silver;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	width: 350px;
+}
+.login-form button{
+	background:  #002cca;
+	padding: 10px 20px;
+	border: none;
+	color: white;
+	font-weight: bold;
+	margin: 2%;
+	width: 45%;
+}
+.login-form button:hover{
+	background: #0000ca;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.login-form{
