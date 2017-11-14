@@ -24,15 +24,17 @@ body{
 	align: left;
 }
 .login-form{
-		position: fixed;
-		top: 30%;
-		left: 0;
-		right: 0;
-		margin: auto;
-		padding: 15px;
-		background: #41baf4;
-		width: fit-content;
-		color: white;
+	position: fixed;
+    top: 0%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 30px;
+    background: #41baf4;
+    width: fit-content;
+    color: white;
+    bottom: 0px;
+    height: fit-content;
 	}
 .login-form input{
 	border: 2px solid silver;
