@@ -27,6 +27,9 @@ class User{
     function getUser(){
         return $this->user;
     }
+    function getUsername(){
+        return $this->user->username;
+    }
     function getFamily(){
         return $this->user->family;
     }
@@ -36,7 +39,7 @@ class User{
     function createUser($username, $password, $family, $email){
         $db = new Database();
         $query = "INSERT INTO `users`(`family_tag`, `user_name`, `password`, `user_type`, `email`) VALUES ('".$family."','".$username."','".$password."',3,'".$email."')";
-        echo $query;
+        
         $result = $db->query($query);
         if(!$result)
            return false;
@@ -51,6 +54,24 @@ class User{
         if($this->user->accessLevel <= $thing->getAccessLevel())
             return true;
         return false;
+    }
+    function getThingList(){ //TODO: report method in documentation
+        $db = new Database();
+        $query = 'SELECT things.tag FROM things inner JOIN users_definition on (users_definition.id = things.user_type) WHERE things.family_tag="'.$this->user->family.'" AND access_level >='.$this->user->accessLevel;
+        
+        $result = $db->query($query);
+        if(!$result)
+            return false;
+        else
+            return $this->generateThingList($result); 
+    }
+    private function generateThingList($result){
+        $list = array();
+        foreach($result as $thing){
+            $thingObj = new Thing($thing->tag);
+            array_push($list, $thingObj);
+        }
+        return $list;
     }
     private function initUser($result){
         $this->user = new StdClass;

@@ -30,6 +30,9 @@ class Thing
     function  getThing(){
         return $this->thing;
     }
+    function  getName(){
+        return $this->thing->name;
+    }
     function getFamily(){
         return $this->thing->family_tag;
     }

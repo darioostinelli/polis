@@ -12,7 +12,7 @@ class Database{
         if (!$this->conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
-        return $this->conn;
+       
     }
     public function closeConnection(){
         $this->conn->close();
