@@ -19,10 +19,12 @@
     
      echo "<br><br>";
      echo "User:  ".$userList[3]->getUsername()." has access to Thing: ".$thingList[1]->getName()." ==> ".json_encode($userList[3]->hasAccessTo($thingList[1]));
-    */
-    $user = new User("user");
+    
+    $user = new User("admin");
     $thingListUser = $user->getThingList();
     foreach ($thingListUser as $thing){
         echo json_encode($thing->getThing())."<br>";
-    }
+    }*/
+    $header = 'From: daostinelli@gmail.com';
+    mail("daostinelli@gmail.com","Prova","Messaggio",$header);
 ?>
