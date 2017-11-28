@@ -70,6 +70,10 @@ body{
 .login-form button:hover{
 	background: #0000ca;
 }
+#loading-icon{
+    width: 35px;
+    display: none;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.login-form{

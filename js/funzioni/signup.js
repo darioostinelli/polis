@@ -8,7 +8,6 @@ function handleSignup(){
 		return;
 	}
 	else{
-		alert("valid");
-		//TODO: send POST to server
+		signup.sendRequest();
 	}
 }

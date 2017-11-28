@@ -56,5 +56,31 @@ function SignupHandler () {
     this.log = function(message){
     	this.loginLog.text(message);
     }
+    
+    this.sendRequest = function(){
+    	var data = {};
+    	$("#loading-icon").show();
+    	data.user = this.inputUser.val();
+    	data.pass = this.inputPass.val();
+    	data.email = this.inputEmail.val();
+    	data.family = this.inputFamily.val();
+    	var jsonData = JSON.stringify(data);
+    	$.post('/polis/php/api/signup.php',
+    		{data : jsonData},
+    		function(data){
+    			var decodedData = JSON.parse(data);
+    			if(decodedData.status == "error"){
+    				$('#login-log').text(decodedData.error);
+    			}
+    			else{
+    				window.location.href = "/polis/dashboard/mainPage.php";
+    			}
+    			$("#loading-icon").hide();
+    		})
+    		.fail(function(){
+    			$('#login-log').text("Server error. Please try later");
+    			$("#loading-icon").hide();
+    		});
+    }
 
 }
