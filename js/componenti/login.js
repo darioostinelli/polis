@@ -30,5 +30,23 @@ function LoginHandler () {
     this.log = function(message){
     	this.loginLog.text(message);
     }
+    this.sendRequest = function(){
+    	var data = {user : this.inputUser.val(), pass : this.inputPass.val()};
+    	var jsonData = JSON.stringify(data);
+    	$.post('/polis/php/api/login.php',
+    		{data : jsonData},
+    		function(data){
+    			var decodedData = JSON.parse(data);
+    			if(decodedData.status == "error"){
+    				$('#login-log').text(decodedData.error);
+    			}
+    			else{
+    				window.location.href = "/polis/dashboard/mainPage.php";
+    			}
+    		})
+    		.fail(function(){
+    			$('#login-log').text("Server error. Please try later");
+    		});
+    }
 
 }

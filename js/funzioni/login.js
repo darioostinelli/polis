@@ -11,7 +11,7 @@ function handleLogin(){
 		return;
 	}
 	else{
-		alert("valid");
-		//TODO: send POST to server
+		
+		login.sendRequest();
 	}
 }

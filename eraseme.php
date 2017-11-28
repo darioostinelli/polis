@@ -5,7 +5,7 @@
     
     include_once 'components/Family.php';
     include_once 'components/User.php';
-   /* $family = new Family("123456789012");
+    $family = new Family("123456789012");
    
      $thingList =   $family->getThingList();
     foreach ($thingList as $thing){
@@ -18,13 +18,12 @@
      }
     
      echo "<br><br>";
-     echo "User:  ".$userList[3]->getUsername()." has access to Thing: ".$thingList[1]->getName()." ==> ".json_encode($userList[3]->hasAccessTo($thingList[1]));
+     echo "User:  ".$userList[1]->getUsername()." has access to Thing: ".$thingList[1]->getName()." ==> ".json_encode($userList[1]->hasAccessTo($thingList[1]));
     
-    $user = new User("admin");
+    $user = new User("guest");
     $thingListUser = $user->getThingList();
     foreach ($thingListUser as $thing){
         echo json_encode($thing->getThing())."<br>";
-    }*/
-    $header = 'From: daostinelli@gmail.com';
-    mail("daostinelli@gmail.com","Prova","Messaggio",$header);
+    }
+    
 ?>
