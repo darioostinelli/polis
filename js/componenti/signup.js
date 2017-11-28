@@ -71,6 +71,8 @@ function SignupHandler () {
     			var decodedData = JSON.parse(data);
     			if(decodedData.status == "error"){
     				$('#login-log').text(decodedData.error);
+    				
+    				//TODO handle show family
     			}
     			else{
     				window.location.href = "/polis/dashboard/mainPage.php";

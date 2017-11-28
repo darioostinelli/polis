@@ -31,6 +31,7 @@ function LoginHandler () {
     	this.loginLog.text(message);
     }
     this.sendRequest = function(){
+    	$("#loading-icon").show();
     	var data = {user : this.inputUser.val(), pass : this.inputPass.val()};
     	var jsonData = JSON.stringify(data);
     	$.post('/polis/php/api/login.php',
@@ -39,9 +40,11 @@ function LoginHandler () {
     			var decodedData = JSON.parse(data);
     			if(decodedData.status == "error"){
     				$('#login-log').text(decodedData.error);
+    				$("#loading-icon").hide();
     			}
     			else{
     				window.location.href = "/polis/dashboard/mainPage.php";
+    				$("#loading-icon").hide();
     			}
     		})
     		.fail(function(){

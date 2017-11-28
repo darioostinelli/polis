@@ -1,10 +1,12 @@
 <?php
+    use php\components\EmailSender;
+
     $includePath = $_SERVER['DOCUMENT_ROOT'];
     $includePath .= "/polis/php";
     ini_set('include_path', $includePath);
     
-    include_once 'components/Family.php';
-    include_once 'components/User.php';
+    include_once 'components/EmailSender.php';
+   /* include_once 'components/User.php';
     $family = new Family("123456789012");
    
      $thingList =   $family->getThingList();
@@ -24,6 +26,9 @@
     $thingListUser = $user->getThingList();
     foreach ($thingListUser as $thing){
         echo json_encode($thing->getThing())."<br>";
-    }
+    }*/
+   /* */
+    $email = new EmailSender("daostinelli@gmail.com");
+    $email->sendFamilyTagEmail("Prova", "abcdefgher");   
     
 ?>
