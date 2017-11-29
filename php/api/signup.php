@@ -25,7 +25,8 @@
     if(count($result) > 0){
         die('{"status":"error","error":"Email is already used"}');
     }
-    $sql = "INSERT INTO `users`(`family_tag`, `user_name`, `password`, `user_type`, `email`) VALUES ('".$signupData->family."','".$signupData->user."','".$signupData->pass."', 1 ,'".$signupData->email."')";
+    $sql = "INSERT INTO `users`(`family_tag`, `user_name`, `password`, `user_type`, `email`) VALUES ('".$signupData->family."','".$signupData->user."','".$signupData->pass."', 3 ,'".$signupData->email."')";
+    //default user type is guest
     $result = $db->query($sql);
     if($result){
         echo '{"status":"success"}';

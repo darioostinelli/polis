@@ -11,7 +11,8 @@ function SignupHandler () {
     this.btnLogin = $('#btn-login');
     this.btnSignup = $('#btn-signup');
     this.loginLog = $('#login-log');
-    
+    this.familyLoginInfo = $("#family-signup");
+    this.closeFamilyInfo = $("#closeInfo");
     this.isValid = function(){
     	var valid = true;
     	this.log("");
@@ -20,6 +21,7 @@ function SignupHandler () {
     	this.inputConfirmPass.css("border","2px solid silver");
     	this.inputEmail.css("border","2px solid silver");
     	this.inputFamily.css("border","2px solid silver");
+    	this.log("");
     	if(this.inputPass.val() != this.inputConfirmPass.val()){
     		valid = false;
     		this.inputPass.css("border","2px solid orange");
@@ -46,7 +48,10 @@ function SignupHandler () {
     		valid = false;
     		this.inputFamily.css("border","2px solid red");
     	}
-    	
+    	if(this.inputPass.val().length < 6){
+    		valid = false;
+    		this.log("Password must be at least 6 characters")
+    	}
     	return valid;
     }
     this.btnLogin.click(function(){
@@ -60,6 +65,7 @@ function SignupHandler () {
     this.sendRequest = function(){
     	var data = {};
     	$("#loading-icon").show();
+    	$("#family-signup").fadeOut(100);
     	data.user = this.inputUser.val();
     	data.pass = this.inputPass.val();
     	data.email = this.inputEmail.val();
@@ -71,8 +77,8 @@ function SignupHandler () {
     			var decodedData = JSON.parse(data);
     			if(decodedData.status == "error"){
     				$('#login-log').text(decodedData.error);
-    				
-    				//TODO handle show family
+    				if(decodedData.showFamily)
+    					$("#family-signup").fadeIn(100);
     			}
     			else{
     				window.location.href = "/polis/dashboard/mainPage.php";

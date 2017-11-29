@@ -3,6 +3,9 @@ a{
 	color: black;
 	text-decoration: none;
 }
+a:hover{
+	text-decoration: underline;
+}
 body{
 	margin: 0;
 	padding: 0;
@@ -30,9 +33,7 @@ body{
 	vertical-align: middle;
 	padding-right: 35px;
 }
-.login:hover{
-	text-decoration: underline;
-}
+
 .footer{
 	padding-left: 50px;
 	padding-right: 50px;
