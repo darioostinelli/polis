@@ -80,6 +80,9 @@ body{
 .cell-layout{
 		margin: 30px;
 	}
+.only-desktop{
+		display: none;
+	}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.parallax {
@@ -117,6 +120,9 @@ body{
 	}
 	.cell-layout h3{
 		text-align: center;
+	}
+	.only-desktop{
+		display: inline;
 	}
 	
 }

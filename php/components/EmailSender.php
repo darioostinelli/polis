@@ -14,7 +14,7 @@ class EmailSender
     }
     public function sendFamilyTagEmail($object, $accessKey){
         
-        $header = "From: daostinelli@gmail.com"."\r\n";
+        $header = "From: polis@gmail.com"."\r\n";
         $header .= "Content-type:text/html;charset=UTF-8";
         $message = "Benvenuto su Polis! Il tuo codice famiglia e': ".$accessKey;
         $url = 'http://polis.com/polis/src/templates/FamilyTagEmailTemplate.php?key='.$accessKey;             
