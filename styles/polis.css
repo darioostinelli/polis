@@ -3,7 +3,6 @@ body{
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppins', sans-serif;
-
     background-size: cover;
 }
 .footer{
@@ -19,6 +18,16 @@ body{
 	left: 0;
 	right: 0;
 	background: white;
+}
+.dashboard-footer{
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	color: #333333;
+	font-size: 12px;
+	background: #ddeeee;
 }
 .red{
 	color: #f44141;
@@ -99,9 +108,86 @@ body{
 #family-signup a{
 	color: white;
 }
-/*** 	DESKTOP 	***/
-@media only screen and (orientation: landscape){
-	.login-form{
+.main-page{
+	height: -webkit-fill-available;
+}
+.menu{
+	display: block;
+	background: #4168f4;
+	}
+.menu-item{
+	padding:15px;
+	color:white;
+	text-align: center;
+}
+.menu-item:hover{
+	background: #3158e4;
+}
+.only-desktop{
+		display: none;
+	}
+.only-mobile{
+	display: inline;
+}
+.logo-container{
+	height: 80px;
+
+	}
+.header{
+		height: 80px;
+		background: #4168f4;
+		float: right;
+		width: fit-content;
 		
 	}
+.header-element{
+		
+		padding: 25px;
+	}
+.header-element:hover{
+		background: #3158e4
+	}
+/*** 	DESKTOP 	***/
+@media only screen and (orientation: landscape){
+	.main-page{
+		display: table;
+		width: 100%;
+		
+	}
+	.menu{
+		display: table-cell;
+		width: 200px;
+	}
+	.menu-item{
+		text-align: left;
+	}
+	.only-desktop{
+		display: block;
+	}
+	.only-mobile{
+		display: none;
+	}
+	.dashboard{
+		display: table-cell;
+		width: 100%;
+		padding: 0;
+		
+	}
+	.header{
+		height: 80px;
+		background: #4168f4;
+		width: -webkit-fill-available;
+		top: 0;
+	}
+	.header:hover{
+		background: #4168f4;
+	}
+	.header-element{
+		float: right;
+		padding: 25px;
+	}
+	.header-element:hover{
+		background: #3158e4
+	}
 }
+
