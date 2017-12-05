@@ -11,7 +11,7 @@ function mainPageHandler () {
     			var decodedData = JSON.parse(data);
     			
     			$(".loading-panel").hide();
-    			$(".notice-board").text(data);
+    			//$(".notice-board").text(data);
     		})
     		.fail(function(){
     			//TODO: handle fail

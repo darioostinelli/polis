@@ -26,7 +26,8 @@
 <script>
 	var page = new mainPageHandler();
 	$().ready(function(){
-		page.getThingList();
+		//page.getThingList();
+		$(".loading-panel").hide(); //TODO: remove this line
 	});
 </script>
 </head>
@@ -39,14 +40,15 @@
 	</div>
 	<div class="main-page">
 		<div class="menu shadow">
-			<div class="logo-container">
+			<div class="logo-container only-desktop">
 				<img src="/polis/src/img/logos/polis-logo.png" />
-				<div class="header only-mobile">
-					<div class="header-element logout">Logout</div>
-				</div>
+				
 			</div>
 			<!--TODO: Menù da generare tramite script PHP -->
-			<div class="menu-item">Elem</div>
+			<div class="menu-item only-mobile-block">
+				<img src="/polis/src/img/logos/polis-logo.png" />
+			</div>
+			<div class="menu-item only-mobile-block">Logout</div>
 			<div class="menu-item">Elem</div>
 			<div class="menu-item">Elem</div>
 			<div class="menu-item">Elem</div>
@@ -57,7 +59,18 @@
 				<div class="header-element logout">Logout</div>
 			</div>
 			<div class="notice-board">
-				
+				<div class="row">
+					<div class="cell thing-template shadow">aaaa</div>
+					<div class="cell thing-template shadow">aaaa</div>
+				</div>
+				<div class="row">
+					<div class="cell thing-template shadow">aaaa</div>
+					<div class="cell thing-template shadow">aaaa</div>
+				</div>
+				<div class="row">
+					<div class="cell thing-template shadow">aaaa</div>
+					
+				</div>
 			</div>
 		</div>
 		
