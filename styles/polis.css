@@ -114,6 +114,7 @@ body{
 .menu{
 	display: block;
 	background: #4168f4;
+	
 	}
 .menu-item{
 	padding:15px;
@@ -141,12 +142,15 @@ body{
 		
 	}
 .header-element{
-		
+		color: white;
 		padding: 25px;
 	}
 .header-element:hover{
 		background: #3158e4
 	}
+.shadow{
+	box-shadow: 3px 3px 3px #888888;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.main-page{
@@ -188,6 +192,26 @@ body{
 	}
 	.header-element:hover{
 		background: #3158e4
+	}
+	.loading-panel{
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: white;
+	}		
+		
+	.load-container{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;		
+		width: fit-content;
+		height: fit-content;
+		margin: auto;
+		text-align: center;
 	}
 }
 

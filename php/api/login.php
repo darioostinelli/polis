@@ -18,6 +18,6 @@
    }
    else{
        echo '{"status":"success"}';
-       $_SESSION['user'] = $user;
+       $_SESSION['user'] = $user->getUser();
    }
 ?>
