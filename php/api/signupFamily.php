@@ -46,7 +46,7 @@ session_start();
     $result = $db->query($sql);
     if($result){
         echo '{"status":"success"}';
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $user->getUser();
         $email = new EmailSender($signupData->email);
         $email->sendFamilyTagEmail("Welcom to Polis", $tag);  
     }

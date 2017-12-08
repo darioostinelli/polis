@@ -4,6 +4,7 @@ $includePath .= "/polis/php";
 ini_set('include_path', $includePath);
 include_once 'components/DatabaseConnection.php';
 include_once 'components/Family.php';
+include_once 'components/Things.php';
 class User{
     private $user;
     function __construct($username){
@@ -58,7 +59,7 @@ class User{
     function getThingList(){ //TODO: report method in documentation
         $db = new Database();
         $query = 'SELECT things.tag FROM things inner JOIN users_definition on (users_definition.id = things.user_type) WHERE things.family_tag="'.$this->user->family.'" AND access_level >='.$this->user->accessLevel;
-        
+    
         $result = $db->query($query);
         if(!$result)
             return false;
@@ -71,6 +72,7 @@ class User{
             $thingObj = new Thing($thing->tag);
             array_push($list, $thingObj);
         }
+        
         return $list;
     }
     private function initUser($result){

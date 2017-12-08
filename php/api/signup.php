@@ -30,7 +30,7 @@
     $result = $db->query($sql);
     if($result){
         echo '{"status":"success"}';
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $user->getUser();
     }
     else{
         die('{"status":"error","error":"Server error, please try later"}');

@@ -3,7 +3,6 @@ body{
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppins', sans-serif;
-
     background-size: cover;
 }
 .footer{
@@ -19,6 +18,16 @@ body{
 	left: 0;
 	right: 0;
 	background: white;
+}
+.dashboard-footer{
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	color: #333333;
+	font-size: 12px;
+	background: #ddeeee;
 }
 .red{
 	color: #f44141;
@@ -99,9 +108,167 @@ body{
 #family-signup a{
 	color: white;
 }
-/*** 	DESKTOP 	***/
-@media only screen and (orientation: landscape){
-	.login-form{
+.main-page{
+	height: -webkit-fill-available;
+	background:white;
+}
+.menu{
+	display: block;
+	background: #4168f4;
+	
+	}	
+	
+.menu-item{
+	padding:15px;
+	color:white;
+	text-align: center;
+}
+.menu-item:hover{
+	background: #3158e4;
+}
+.only-desktop{
+		display: none;
+	}
+.only-mobile-line{
+	display: inline;
+}
+.only-mobile-block{
+	display: block;
+}
+.logo-container{
+	height: 80px;
+	position:fixed;
+	top: 0;
+	}
+.header{
+		height: 80px;
+		background: #4168f4;
+		float: right;
+		width: fit-content;
 		
 	}
+.header-element{
+		color: white;
+		padding: 25px;
+	}
+.header-element:hover{
+		background: #3158e4
+	}
+.shadow{
+	box-shadow: 3px 3px 3px #888888;
 }
+.loading-panel{
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: white;
+		z-index: 200;
+	}		
+		
+	.load-container{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;		
+		width: fit-content;
+		height: fit-content;
+		margin: auto;
+		text-align: center;
+	}
+	.notice-board{
+		display: block;
+		background: white;
+	}
+	.thing-template{
+		margin: 30px;
+		background:#3158e4;
+		padding: 15px;		
+		color: white;
+		font-weight: bold;
+	}
+	.thing-template:hover{
+		background:#4168f4;
+	}
+	.template-title{	
+		
+	}
+	.template-body{
+		padding: 30px;
+	}
+	.selected-menu{
+		background: #2148d4;
+	}
+	.selected-menu:hover{
+		background: #2148d4;
+	}
+	.thing-icon{
+		height: 50px;
+	}
+/*** 	DESKTOP 	***/
+@media only screen and (orientation: landscape){
+	.main-page{
+		display: table;
+		width: 100%;
+		
+	}
+	.menu{
+		display: table-cell;
+		width: 200px;
+	}
+	.menu-item{
+		text-align: left;
+		width: 200px
+	}
+	.only-desktop{
+		display: block;
+	}
+	.only-mobile-line{
+		display: none;
+	}
+	.only-mobile-block{
+		display: none;
+	}
+	.dashboard{
+		display: table-cell;
+		width: 100%;
+		padding: 0;
+		
+	}
+	.header{
+		position:relative;
+		height: 80px;
+		background: #4168f4;
+		width: 100%;
+		top: -20px;
+	}
+	.header:hover{
+		background: #4168f4;
+	}
+	.header-element{
+		float: right;
+		padding: 25px;
+	}
+	.header-element:hover{
+		background: #3158e4
+	}
+	.notice-board{
+		display: table;
+		table-layout: absolute;
+		border-collapse: separate;
+  		border-spacing: 10px;
+  		margin: 50px;
+  		width: -webkit-fill-available;
+	}
+	.row{
+		display: table-row;
+	}
+	.cell{
+		display: table-cell;
+	}
+	
+	
+}
+
