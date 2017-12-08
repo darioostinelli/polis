@@ -22,13 +22,15 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <script src="/polis/js/librerie/jquery-3.2.1.js"></script>
 <script src="/polis/js/componenti/mainPage.js"></script>
+
 <link rel="shortcut icon" href="/polis/logo.ico" />
 <script>
 	var page = new mainPageHandler();
 	$().ready(function(){
-		//page.getThingList();
-		$(".loading-panel").hide(); //TODO: remove this line
-	});
+		//$(".loading-panel").hide();
+		page.getThingList();
+		//page.addThing("aaaa");
+		});
 </script>
 </head>
 <body>
@@ -40,45 +42,29 @@
 	</div>
 	<div class="main-page">
 		<div class="menu shadow">
-			<div class="logo-container only-desktop">
-				<img src="/polis/src/img/logos/polis-logo.png" />
-				
-			</div>
+			
 			<!--TODO: Menù da generare tramite script PHP -->
-			<div class="menu-item only-mobile-block">
+			<div class="menu-item ">
 				<img src="/polis/src/img/logos/polis-logo.png" />
 			</div>
 			<div class="menu-item only-mobile-block">Logout</div>
-			<div class="menu-item">Elem</div>
+			<div class="menu-item selected-menu">Things</div>
 			<div class="menu-item">Elem</div>
 			<div class="menu-item">Elem</div>
 			<div class="menu-item">Elem</div>
 		</div>
 		<div class="dashboard">
 			<div class="header only-desktop shadow">
-				<div class="header-element logout">Logout</div>
+				<div class="header-element">Logout</div>
 			</div>
 			<div class="notice-board">
-				<div class="row">
-					<div class="cell thing-template shadow">aaaa</div>
-					<div class="cell thing-template shadow">aaaa</div>
-				</div>
-				<div class="row">
-					<div class="cell thing-template shadow">aaaa</div>
-					<div class="cell thing-template shadow">aaaa</div>
-				</div>
-				<div class="row">
-					<div class="cell thing-template shadow">aaaa</div>
-					
-				</div>
+				
 			</div>
 		</div>
-		
+    	
 	</div>
-	<div class="dashboard-footer">
-		Polis - IoT Solution<br>
-		Dario Ostinelli - 2018
-	</div>
+		<!-- TODO: add footer-->
+
 </body>
 </html>
 

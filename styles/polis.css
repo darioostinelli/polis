@@ -110,12 +110,14 @@ body{
 }
 .main-page{
 	height: -webkit-fill-available;
+	background:white;
 }
 .menu{
 	display: block;
 	background: #4168f4;
 	
-	}
+	}	
+	
 .menu-item{
 	padding:15px;
 	color:white;
@@ -162,6 +164,7 @@ body{
 		left: 0;
 		right: 0;
 		background: white;
+		z-index: 200;
 	}		
 		
 	.load-container{
@@ -177,10 +180,32 @@ body{
 	}
 	.notice-board{
 		display: block;
+		background: white;
 	}
 	.thing-template{
+		margin: 30px;
+		background:#3158e4;
+		padding: 15px;		
+		color: white;
+		font-weight: bold;
+	}
+	.thing-template:hover{
+		background:#4168f4;
+	}
+	.template-title{	
+		
+	}
+	.template-body{
 		padding: 30px;
-		background: #62befc;
+	}
+	.selected-menu{
+		background: #2148d4;
+	}
+	.selected-menu:hover{
+		background: #2148d4;
+	}
+	.thing-icon{
+		height: 50px;
 	}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
@@ -213,10 +238,11 @@ body{
 		
 	}
 	.header{
+		position:relative;
 		height: 80px;
 		background: #4168f4;
-		width: -webkit-fill-available;
-		top: 0;
+		width: 100%;
+		top: -20px;
 	}
 	.header:hover{
 		background: #4168f4;
@@ -230,7 +256,7 @@ body{
 	}
 	.notice-board{
 		display: table;
-		table-layout: relative;
+		table-layout: absolute;
 		border-collapse: separate;
   		border-spacing: 10px;
   		margin: 50px;
@@ -242,8 +268,7 @@ body{
 	.cell{
 		display: table-cell;
 	}
-	.thing-template{
-		
-	}
+	
+	
 }
 
