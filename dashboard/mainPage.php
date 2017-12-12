@@ -39,7 +39,7 @@
 		});
 </script>
 </head>
-<body>
+<body style="background-image: url(/polis/src/img/background/main-background.jpg)">
 	<div class="loading-panel">
 		<div class="load-container">
 			<img src="/polis/src/img/icons/loading.gif"><br>
@@ -48,9 +48,7 @@
 	</div>
 	<div class="main-page">
 		<div class="menu shadow">
-			
-			<!--TODO: Menù da generare tramite script PHP -->
-			<div class="menu-item ">
+			<div class="menu-item header-menu">
 				<img src="/polis/src/img/logos/polis-logo.png" />
 			</div>
 			<div class="menu-item only-mobile-block">Logout</div>
@@ -62,8 +60,8 @@
 			<div class="header only-desktop shadow">
 				<div class="header-element">Logout</div>
 			</div>
-			<div class="notice-board">
-				
+			<div class="notice-board shadow">
+				<h2 class="template-title">Things List</h2>
 			</div>
 		</div>
     	

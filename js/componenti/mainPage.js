@@ -28,7 +28,7 @@ function mainPageHandler () {
 		  thingHtml += addThing(data[i-1].name);
 	  }
 	  thingHtml += "</div>"
-	  $(".notice-board").html(thingHtml);
+	  $(".notice-board").append(thingHtml);
 	  
 	 
   }
