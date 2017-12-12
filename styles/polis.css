@@ -192,6 +192,10 @@ body{
 	.thing-template:hover{
 		background:#4168f4;
 	}
+	.thing-template td{
+		color: white;
+		font-weight: bold
+	}
 	.template-title{	
 		
 	}
@@ -258,7 +262,7 @@ body{
 		display: table;
 		table-layout: absolute;
 		border-collapse: separate;
-  		border-spacing: 10px;
+  		border-spacing: 20px;
   		margin: 50px;
   		width: -webkit-fill-available;
 	}
@@ -267,6 +271,7 @@ body{
 	}
 	.cell{
 		display: table-cell;
+		width: 45%;
 	}
 	
 	

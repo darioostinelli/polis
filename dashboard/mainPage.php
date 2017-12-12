@@ -1,4 +1,6 @@
 <?php 
+    use php\components\PageBuilder;
+
     session_start();
     $includePath = $_SERVER['DOCUMENT_ROOT'];
     $includePath .= "/polis/php";
@@ -6,11 +8,15 @@
     include_once 'components/DatabaseConnection.php';
     include_once 'components/Things.php';
     include_once 'components/User.php';
-    
+    include_once 'components/PageBuilder.php';
     if(!isset($_SESSION['user'])){
         header("Location: /");
         die();
     }     
+    $user = new User($_SESSION['user']->username);
+    $pageBuilder = new PageBuilder($user);
+    $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
+   // echo json_encode($_SESSION['user']);
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +55,8 @@
 			</div>
 			<div class="menu-item only-mobile-block">Logout</div>
 			<div class="menu-item selected-menu">Things</div>
-			<div class="menu-item">Elem</div>
-			<div class="menu-item">Elem</div>
-			<div class="menu-item">Elem</div>
+			<?php  echo $menuItems; ?>
+			
 		</div>
 		<div class="dashboard">
 			<div class="header only-desktop shadow">
