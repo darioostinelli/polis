@@ -1,5 +1,7 @@
-<?php
-    session_start();
+<?php  
+
+   session_start();
+   
     $includePath = $_SERVER['DOCUMENT_ROOT'];
     $includePath .= "/polis/php";
     ini_set('include_path', $includePath);

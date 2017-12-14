@@ -3,7 +3,7 @@ body{
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppins', sans-serif;
-    background-size: cover;
+    
 }
 .footer{
 	padding-left: 50px;
@@ -113,7 +113,7 @@ body{
 }
 .menu{
 	display: block;
-	background: #4168f4;
+	background: #2d2e30;
 	
 	}	
 	
@@ -123,7 +123,7 @@ body{
 	text-align: center;
 }
 .menu-item:hover{
-	background: #3158e4;
+	background: #1d1e20;
 }
 .only-desktop{
 		display: none;
@@ -141,7 +141,7 @@ body{
 	}
 .header{
 		height: 80px;
-		background: #4168f4;
+		background: #2d2e30;
 		float: right;
 		width: fit-content;
 		
@@ -154,7 +154,7 @@ body{
 		background: #3158e4
 	}
 .shadow{
-	box-shadow: 3px 3px 3px #8888ff;
+	box-shadow: 3px 3px 3px #111111;
 }
 .loading-panel{
 		position: fixed;
@@ -179,42 +179,58 @@ body{
 }
 .notice-board{
 	display: block;
-	background: white;
+	background: rgba(0,0,0,0.5);
 }
 .thing-template{
 	margin: 30px;
-	background:#f4b429;
+	border: 3px solid #e4b319;
+	background: none;
 	padding: 15px;		
-	color: white;
+	color: #e4b319;
 	font-weight: bold;
 	}
 .thing-template:hover{
-		background:#e4a419;
+		background:#e4b319;
+		color: white;
 	}
 .thing-template td{
-		color: white;
-		font-weight: bold
+		
+		font-weight: bolder
 	}
 .template-title{	
 		margin-bottom: 0;
 		margin-left: 30px;
+		color: white;
 	}
+.template-title a{
+	color: white;
+	text-decoration:none;
+}
+.template-title a:hover{
+	text-decoration: underline;
+}
 .template-body{
 		padding: 30px;
 	}
 .selected-menu{
-		background: #2148d4;
+		background: #0d0e10;
 	}
 .selected-menu:hover{
-		background: #2148d4;
+		background: #0d0e10;
 	}
 .thing-icon{
 		height: 50px;
 	}
-.notice-board{		  		
+.notice-board{  		
   		
   		padding-top: 15px;
   		padding-bottom: 15px;
+	}
+.header-menu{
+		background: #666666;
+	}
+.header-menu:hover{
+		background: #666666;
 	}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
@@ -222,6 +238,7 @@ body{
 		position:absolute;
 		top: 0;
 		height: 80px;
+		background: #666666;
 	}
 	.main-page{
 		display: table;
@@ -255,19 +272,19 @@ body{
 	.header{
 		position:relative;
 		height: 80px;
-		background: #4168f4;
+		background: #2d2e30;
 		width: 100%;
 		
 	}
 	.header:hover{
-		background: #4168f4;
+		background: #2d2e30;
 	}
 	.header-element{
 		float: right;
 		padding: 25px;
 	}
 	.header-element:hover{
-		background: #3158e4
+		background: #1d1e20;
 	}
 	.notice-board{
 		position: relative;
@@ -276,7 +293,7 @@ body{
 		border-collapse: separate;
   		-webkit-border-horizontal-spacing: 30px;
     	-webkit-border-vertical-spacing: 20px;
-  		margin: 50px;
+  		margin: 80px;
   		width: -webkit-fill-available;
   		padding: 0;
   		border-radius: 10px;
@@ -291,6 +308,7 @@ body{
 	.template-title{	
 		margin-bottom: 0;
 		margin-left: 0;
+		color: white;
 	}
 	
 }

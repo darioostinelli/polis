@@ -15,6 +15,13 @@
         header("Location: /polis/");
         die();
     }
+    if(isset($_SESSION['thingList'])){
+        //return cached data
+        $cacheUser = $_SESSION['thingList']->user;
+        $sessionUser = $_SESSION['user']->username;
+        if($cacheUser == $sessionUser)
+            die(json_encode($_SESSION['thingList']->data));
+    }
     $user = new User($_SESSION['user']->username);
     $list = $user->getThingList();
     $thingList = array();

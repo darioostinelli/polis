@@ -28,7 +28,7 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <script src="/polis/js/librerie/jquery-3.2.1.js"></script>
 <script src="/polis/js/componenti/mainPage.js"></script>
-
+<script src="/polis/js/funzioni/mainPage.js"></script>
 <link rel="shortcut icon" href="/polis/logo.ico" />
 <script>
 	var page = new mainPageHandler();
@@ -39,7 +39,7 @@
 		});
 </script>
 </head>
-<body style="background-image: url(/polis/src/img/background/main-background.jpg)">
+<body style="background: #333333">
 	<div class="loading-panel">
 		<div class="load-container">
 			<img src="/polis/src/img/icons/loading.gif"><br>
