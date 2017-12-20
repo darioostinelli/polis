@@ -11,7 +11,7 @@ class PageBuilder
         $this->user = $user;
     }
     public function buildMenu($page){
-        $open = '<div class="menu-item">';
+        $open = '<div class="menu-item" onclick="goToPage(\'%s\')">';
         $openSelected = '<div class="menu-item selected-menu">';
         $close = '</div>';
         $menu = "";
@@ -21,7 +21,7 @@ class PageBuilder
                 $menu .= $openSelected;
             }
             else{
-                $menu .= $open;
+                $menu .= sprintf($open, "things/thingsSetup.php");
             }
             $menu .= "Things Setup".$close;
         }
@@ -31,7 +31,7 @@ class PageBuilder
                 $menu .= $openSelected;
             }
             else{
-                $menu .= $open;
+                $menu .= sprintf($open, "users/userSetup.php");
             }
             $menu .= "Users Setup".$close;
         }

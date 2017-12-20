@@ -232,6 +232,33 @@ body{
 .header-menu:hover{
 		background: #666666;
 	}
+.table-template{
+	background: white;
+	width: -webkit-fill-available;
+	margin: 50px;
+	border-collapse: collapse;
+	border-radius: 15px;
+}
+.table-template td,th{
+	text-align: left;
+	padding: 15px;
+	margin-top: 40px;
+}
+.table-template tr:hover{
+	background:  #dedede;
+	cursor: pointer;
+}
+.table-template tr:nth-child(even){
+	background: #eeeeee;
+}
+.table-template tr:nth-child(even):hover{
+	background:  #dedede;
+	cursor: pointer;
+}
+.table-template tr:first-child{
+	background: #2d2e30;
+	color: white;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.header-menu{
@@ -309,6 +336,10 @@ body{
 		margin-bottom: 0;
 		margin-left: 0;
 		color: white;
+	}
+	
+	.table-template{
+		margin: 0;
 	}
 	
 }
