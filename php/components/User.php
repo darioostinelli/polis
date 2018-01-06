@@ -34,6 +34,9 @@ class User{
     function getFamily(){
         return $this->user->family;
     }
+    function getAccessLevel(){
+        return $this->user->accessLevel;
+    }
     function controlValidation($pass){
         return strcmp($this->user->password, $pass) == 0;
     }
@@ -52,7 +55,7 @@ class User{
         /* access level 0: root
          * access level 1: only some things
          * ...*/
-        if($this->user->accessLevel <= $thing->getAccessLevel())
+        if($this->user->accessLevel <= $thing->getAccessLevel() && $this->user->family == $thing->getFamily())
             return true;
         return false;
     }

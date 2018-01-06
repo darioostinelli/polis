@@ -8,7 +8,7 @@
     include_once 'components/DatabaseConnection.php';
     
     if(!isset($_POST["data"])){
-        header("Location /polis/");
+        header("Location: /polis/");
         die();
     } 
     $signupData = json_decode($_POST["data"]);

@@ -1,7 +1,6 @@
 <?php
     use php\components\EmailSender;
-
-session_start();
+    session_start();
     $includePath = $_SERVER['DOCUMENT_ROOT'];
     $includePath .= "/polis/php/";
     ini_set('include_path', $includePath);

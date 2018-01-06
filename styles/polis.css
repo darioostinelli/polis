@@ -3,7 +3,7 @@ body{
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppins', sans-serif;
-    background-size: cover;
+    
 }
 .footer{
 	padding-left: 50px;
@@ -110,11 +110,10 @@ body{
 }
 .main-page{
 	height: -webkit-fill-available;
-	background:white;
 }
 .menu{
 	display: block;
-	background: #4168f4;
+	background: #2d2e30;
 	
 	}	
 	
@@ -124,7 +123,7 @@ body{
 	text-align: center;
 }
 .menu-item:hover{
-	background: #3158e4;
+	background: #1d1e20;
 }
 .only-desktop{
 		display: none;
@@ -142,7 +141,7 @@ body{
 	}
 .header{
 		height: 80px;
-		background: #4168f4;
+		background: #2d2e30;
 		float: right;
 		width: fit-content;
 		
@@ -155,7 +154,7 @@ body{
 		background: #3158e4
 	}
 .shadow{
-	box-shadow: 3px 3px 3px #888888;
+	box-shadow: 3px 3px 3px #111111;
 }
 .loading-panel{
 		position: fixed;
@@ -167,56 +166,116 @@ body{
 		z-index: 200;
 	}		
 		
-	.load-container{
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;		
-		width: fit-content;
-		height: fit-content;
-		margin: auto;
-		text-align: center;
+.load-container{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;		
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	text-align: center;
+}
+.notice-board{
+	display: block;
+	background: rgba(0,0,0,0.5);
+}
+.thing-template{
+	margin: 30px;
+	border: 3px solid #e4b319;
+	background: none;
+	padding: 15px;		
+	color: #e4b319;
+	font-weight: bold;
 	}
-	.notice-board{
-		display: block;
-		background: white;
-	}
-	.thing-template{
-		margin: 30px;
-		background:#3158e4;
-		padding: 15px;		
+.thing-template:hover{
+		background:#e4b319;
 		color: white;
-		font-weight: bold;
 	}
-	.thing-template:hover{
-		background:#4168f4;
-	}
-	.template-title{	
+.thing-template td{
 		
+		font-weight: bolder
 	}
-	.template-body{
+.template-title{	
+		margin-bottom: 0;
+		margin-left: 30px;
+		color: white;
+	}
+.template-title a{
+	color: white;
+	text-decoration:none;
+}
+.template-title a:hover{
+	text-decoration: underline;
+}
+.template-body{
 		padding: 30px;
 	}
-	.selected-menu{
-		background: #2148d4;
+.selected-menu{
+		background: #0d0e10;
 	}
-	.selected-menu:hover{
-		background: #2148d4;
+.selected-menu:hover{
+		background: #0d0e10;
 	}
-	.thing-icon{
+.thing-icon{
 		height: 50px;
 	}
+.notice-board{  		
+  		
+  		padding-top: 15px;
+  		padding-bottom: 15px;
+	}
+.header-menu{
+		background: #666666;
+	}
+.header-menu:hover{
+		background: #666666;
+	}
+.table-template{
+	background: white;
+	width: -webkit-fill-available;
+	margin: 50px;
+	border-collapse: collapse;
+	border-radius: 15px;
+}
+.table-template td,th{
+	text-align: left;
+	padding: 15px;
+	margin-top: 40px;
+}
+.table-template tr:hover{
+	background:  #dedede;
+	cursor: pointer;
+}
+.table-template tr:nth-child(even){
+	background: #eeeeee;
+}
+.table-template tr:nth-child(even):hover{
+	background:  #dedede;
+	cursor: pointer;
+}
+.table-template tr:first-child{
+	background: #2d2e30;
+	color: white;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
+	.header-menu{
+		position:absolute;
+		top: 0;
+		height: 80px;
+		background: #666666;
+	}
 	.main-page{
 		display: table;
 		width: 100%;
 		
 	}
 	.menu{
-		display: table-cell;
+		display: table-cell;		
 		width: 200px;
+		padding-top:110px;
 	}
 	.menu-item{
 		text-align: left;
@@ -240,35 +299,48 @@ body{
 	.header{
 		position:relative;
 		height: 80px;
-		background: #4168f4;
+		background: #2d2e30;
 		width: 100%;
-		top: -20px;
+		
 	}
 	.header:hover{
-		background: #4168f4;
+		background: #2d2e30;
 	}
 	.header-element{
 		float: right;
 		padding: 25px;
 	}
 	.header-element:hover{
-		background: #3158e4
+		background: #1d1e20;
 	}
 	.notice-board{
+		position: relative;
+		top: 30px;
 		display: table;
-		table-layout: absolute;
 		border-collapse: separate;
-  		border-spacing: 10px;
-  		margin: 50px;
+  		-webkit-border-horizontal-spacing: 30px;
+    	-webkit-border-vertical-spacing: 20px;
+  		margin: 80px;
   		width: -webkit-fill-available;
+  		padding: 0;
+  		border-radius: 10px;
 	}
 	.row{
 		display: table-row;
 	}
 	.cell{
 		display: table-cell;
+		width: 45%;
+	}
+	.template-title{	
+		margin-bottom: 0;
+		margin-left: 0;
+		color: white;
 	}
 	
+	.table-template{
+		margin: 0;
+	}
 	
 }
 
