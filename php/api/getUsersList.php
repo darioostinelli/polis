@@ -22,9 +22,10 @@
     }
     $list = $family->getUserList();
     $userList = array();
-    
-    foreach ($list as $user){
-        array_push($userList, $user->getUser());
+    if($list){
+        foreach ($list as $user){
+            array_push($userList, $user->getUser());
+        }
     }
     echo json_encode($userList);
 ?>

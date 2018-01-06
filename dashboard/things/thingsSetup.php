@@ -33,7 +33,7 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 <script>
 	var page = new mainPageHandler();
 	$().ready(function(){		
-		page.getThingList();
+		page.getThingList(true);
 	});
 </script>
 </head>

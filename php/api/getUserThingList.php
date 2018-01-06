@@ -25,9 +25,10 @@
     $user = new User($_SESSION['user']->username);
     $list = $user->getThingList();
     $thingList = array();
-    
-    foreach ($list as $thing){
-        array_push($thingList, $thing->getThing());
+    if($list){
+        foreach ($list as $thing){
+            array_push($thingList, $thing->getThing());
+        }
     }
     echo json_encode($thingList);
 ?>

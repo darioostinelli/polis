@@ -8,6 +8,13 @@ function loadThingPage(tag, name){
 	window.location.href = path;
 }
 
+function loadThingSetupPage(tag, name){
+	var path = "/polis/dashboard/things/thingSetup.php?tag=";
+	path += tag;
+	path += "&name=" + name;
+	window.location.href = path;
+}
+
 function loadUserPage(username){
 	var path = "/polis/dashboard/users/user.php?username=";
 	path += username;

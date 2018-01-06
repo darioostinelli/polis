@@ -1,9 +1,12 @@
 function mainPageHandler () {
     this.logout = $('.logout');
     
-    this.getThingList = function(){
+    this.getThingList = function(setup = false){
     	$("#loading-icon").show();
-    	var callback = this.addThingList;
+    	if(!setup)
+    		var callback = this.addThingList;
+    	else
+    		var callback = this.addThingSetupList;
     	var cacheList = this.cacheThingsList;
     	var data = {getThingList:true};
     	var jsonData = JSON.stringify(data);
@@ -44,7 +47,17 @@ function mainPageHandler () {
 	  
 	 
   }
-  
+  this.addThingSetupList = function(data){
+	  var thingHtml = "<div class='row'>";
+	  for(i = 1; i <= data.length; i++){
+		  if( (i + 1) % 2 == 0){
+			  thingHtml += "</div><div class='row'>";
+		  }
+		  thingHtml += addThingSetup(data[i-1].name, data[i-1].tag);
+	  }
+	  thingHtml += "</div>"
+	  $(".notice-board").append(thingHtml);
+  }
   this.addUsersList = function(data){
 	  var userHtml = "<table class='table-template shadow'>";
 	  userHtml += "<tr><th>User Type<th>User Name</th></tr>"
@@ -95,15 +108,21 @@ addThing = function(thingName, thingTag){
 	thingHtml =  thingHtml.replace("%s",thingName); 
 	return thingHtml.replace("%s",thingName);	
 }
-addUser = function(user){
-	/*userHtml = '<div class="cell thing-template" onclick="loadUserPage(\'%s\')" style="border-left: 3px solid %s">\
+addThingSetup = function(thingName, thingTag){
+	thingHtml = '<div class="cell thing-template" onclick="loadThingSetupPage(\'%s\',\'%s\')">\
 					<table>\
 						<td>\
 							<img class="thing-icon" src="/polis/src/img/icons/thing-icon.svg">\
 						<td>%s\
 						</td>\
 					</table>\
-				</div>';*/
+				</div>';
+	thingHtml =  thingHtml.replace("%s",thingTag);  
+	thingHtml =  thingHtml.replace("%s",thingName); 
+	return thingHtml.replace("%s",thingName);	
+}
+addUser = function(user){
+	
 	userHtml = '<tr onclick="loadUserPage(\'%s\')">\
 				<td style="color: %s">%s<td>%s</td>\
 			</tr>';	
@@ -116,7 +135,7 @@ addUser = function(user){
 		color = "green";
 	userHtml =  userHtml.replace("%s",user.username); 
 	userHtml =  userHtml.replace("%s",color); 
-	userHtml =  userHtml.replace("%s",user.username);  
+	userHtml =  userHtml.replace("%s",user.userType);  
 	return userHtml.replace("%s",user.username);	
 }
 compareByUserType = function(a,b) {
