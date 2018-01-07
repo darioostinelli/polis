@@ -51,7 +51,7 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 			$("input").on("focus", function() {
 				   page.elementModified();
 				});
-			
+			page.getMetrics();
 			
 		});
 </script>
@@ -97,12 +97,12 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 				<!-- Metrics tab -->
 				<div class="hidden-tab">
 					<h3 class="template-title">Metrics</h3>
-    				<table class="table-template">  
+    				<table class="table-template" id="metrics-table">  
     					<tr style="background: #dedede; color: black"><th>Metric Name</th><th>Unit</th></tr>      				
-        				<tr><td>Placeholder</td><td>Placeholder</td></tr>
+        				
     					
     				</table>
-    				<button disabled="disabled"class="save-button" id="save-thing">Save</button>
+    				<button class="save-button" onclick="page.switchTab(this)" >Add</button>
 				</div>
 				<!-- Add Metrics tab -->
 				<div class="hidden-tab">
@@ -111,7 +111,7 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
         				<tr style="background: #dedede; color: black"><th>Metric Name</th><td><?php echo '<input id="metric-name" type="text" value="" placeholder="Metric Name"/>'?></td></tr>
     					<tr><th>Unit</th><td><?php echo '<input id="metric-unit" type="text" value="" placeholder="Unit"/>'?></td></tr>
     				</table>
-    				<button disabled="disabled"class="save-button" id="save-thing">Save</button>
+    				<button disabled="disabled"class="save-button" id="save-metric">Save</button>
 				</div>
 			</div>
 		</div>

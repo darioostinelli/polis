@@ -3,7 +3,7 @@
     $includePath .= "/polis/php";
     ini_set('include_path', $includePath);
     include_once 'components/DatabaseConnection.php';
-
+    include_once 'components/Metric.php';
 class Thing
 {
     private $thing;
@@ -61,6 +61,14 @@ class Thing
             return true;
         return false;
     }
-    
+    function getMetrics(){
+        $query = "SELECT * FROM metrics_definition WHERE thing_tag='".$this->thing->tag."';";
+        $db = new Database();
+        $result = $db->query($query);
+        if(is_bool($result) && !$result){
+            return false;
+        }
+        else return $result;
+    }
 }
 
