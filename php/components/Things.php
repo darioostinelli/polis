@@ -53,7 +53,14 @@ class Thing
             return $result[0]->access_level;
         }
     }
-    
+    function updateThing($name){
+        $query = "UPDATE `things` SET `name` = '".$name."' WHERE `things`.`tag` = '".$this->thing->tag."';";
+        $db = new Database();
+        $result = $db->query($query);
+        if($result)
+            return true;
+        return false;
+    }
     
 }
 
