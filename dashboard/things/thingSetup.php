@@ -48,11 +48,12 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 	var page = new thingSetupHandler();
 	$().ready(function(){
 			$('#save-thing').click(page.saveThing);
+			$('#save-metric').click(page.createMetric);
 			$("input").on("focus", function() {
 				   page.elementModified();
 				});
-			page.getMetrics();
 			
+			page.getMetrics();
 		});
 </script>
 </head>
@@ -82,7 +83,7 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 				<div class="alert" onclick="$(this).hide(100)"></div>
 				<div class="tab-menu">
 					<div class="tab-menu-element" onclick="page.switchTab(this)">Thing</div>
-					<div class="tab-menu-element" onclick="page.switchTab(this)">Metrics</div>
+					<div class="tab-menu-element" onclick="page.switchTab(this); page.getMetrics();">Metrics</div>
 					<div class="tab-menu-element" onclick="page.switchTab(this)">Add Metric</div>
 				</div>
 				<!-- Setup tab -->
@@ -108,8 +109,8 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 				<div class="hidden-tab">
 					<h3 class="template-title">Add Metric</h3>
     				<table class="table-template">        				
-        				<tr style="background: #dedede; color: black"><th>Metric Name</th><td><?php echo '<input id="metric-name" type="text" value="" placeholder="Metric Name"/>'?></td></tr>
-    					<tr><th>Unit</th><td><?php echo '<input id="metric-unit" type="text" value="" placeholder="Unit"/>'?></td></tr>
+        				<tr style="background: #dedede; color: black"><th>Metric Name</th><td><input id="metric-name" type="text" value="" placeholder="Metric Name"/></td></tr>
+    					<tr><th>Unit</th><td><input id="metric-unit" type="text" value="" placeholder="Unit"/></td></tr>
     				</table>
     				<button disabled="disabled"class="save-button" id="save-metric">Save</button>
 				</div>

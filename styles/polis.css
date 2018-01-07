@@ -237,7 +237,7 @@ body{
 	width: -webkit-fill-available;
 	margin: 50px;
 	border-collapse: collapse;
-	border-radius: 15px;
+	
 }
 .table-template td,th{
 	text-align: left;

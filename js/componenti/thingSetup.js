@@ -50,10 +50,32 @@ function thingSetupHandler () {
         			$('.alert').text("Server error").show(100);
         		});
     }
+    this.createMetric = function(){
+    	var data = {};
+    	data.thingTag = $('#tag').text(); 
+    	data.name = $('#metric-name').val();
+    	data.unit = $('#metric-unit').val();
+    	var jsonData = JSON.stringify(data);
+    	$.post('/polis/php/api/createMetric.php',
+        		{data : jsonData},
+        		function(data){
+        			var decodedData = JSON.parse(data);
+        			if(decodedData.status=="error"){
+        				$('.alert').text(decodedData.error).show(100);
+        			}
+        			else{
+        				$('.alert').text("Metric created").show(100).delay(2500).hide(100);
+        			}
+        		})
+        		.fail(function(){
+        			$('.alert').text("Server error").show(100);
+        		});
+    }
   
 }
 
 appendMetricToTable = function(list){
+	$("#metrics-table").html('<tr style="background: #dedede; color: black"><th>Metric Name</th><th>Unit</th></tr>');
 	for(i = 0; i < list.length; i++){
 		var row = createMetricTableRow(list[i].name, list[i].unit);
 		$("#metrics-table").append(row);
