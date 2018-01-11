@@ -60,8 +60,10 @@ class Thing
         $query = "UPDATE `things` SET `name` = '".$name."', user_type='".$userType."' WHERE `things`.`tag` = '".$this->thing->tag."';";
         $db = new Database();
         $result = $db->query($query);
-        if($result)
+        if($result){
+            unset($_SESSION['thingList']);
             return true;
+        }
         return false;
     }
     function getMetrics(){
