@@ -10,6 +10,11 @@ class PageBuilder
     {
         $this->user = $user;
     }
+    public function controlAccessLevel($minLevel){
+        $level = $this->user->getAccessLevel();
+        if($level > $minLevel) //user shouldn't access the page
+            header("Location: /polis/dashboard/mainPage.php");
+    }
     public function buildMenu($page){
         $open = '<div class="menu-item" onclick="goToPage(\'%s\')">';
         $openSelected = '<div class="menu-item selected-menu">';

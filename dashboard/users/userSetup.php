@@ -15,6 +15,7 @@ if(!isset($_SESSION['user'])){
 }
 $user = new User($_SESSION['user']->username);
 $pageBuilder = new PageBuilder($user);
+$pageBuilder->controlAccessLevel(0); //user type: admin
 $menuItems = $pageBuilder->buildMenu("USER_SETUP_PAGE");
 // echo json_encode($_SESSION['user']);
 ?>
