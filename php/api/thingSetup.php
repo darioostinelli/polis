@@ -25,7 +25,7 @@
     if(!$user->hasAccessTo($thing)){
         die('{"status":"error","error":"you have not access to this thing"}');
     }
-    if($thing->updateThing($data->name)){
+    if($thing->updateThing($data->name, $data->userType)){
         echo '{"status":"success"}';
     }
     else{

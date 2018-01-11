@@ -42,6 +42,9 @@ class Thing
     function getAccessLevel(){
         return $this->thing->access_level;
     }
+    function getUserTypeId(){
+        return $this->thing->user_type;
+    }
     private function setAccessLevel($db, $id){
         $query = "SELECT access_level FROM users_definition WHERE id='".$id."'";
         $result = $db->query($query);
@@ -53,8 +56,8 @@ class Thing
             return $result[0]->access_level;
         }
     }
-    function updateThing($name){
-        $query = "UPDATE `things` SET `name` = '".$name."' WHERE `things`.`tag` = '".$this->thing->tag."';";
+    function updateThing($name, $userType){
+        $query = "UPDATE `things` SET `name` = '".$name."', user_type='".$userType."' WHERE `things`.`tag` = '".$this->thing->tag."';";
         $db = new Database();
         $result = $db->query($query);
         if($result)

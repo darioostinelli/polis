@@ -5,6 +5,7 @@ function thingSetupHandler () {
     	var data = {};
     	data.tag = $('#tag').text(); 
     	data.name = $('#name').val();
+    	data.userType = $('#user-type').val();
     	var jsonData = JSON.stringify(data);
     	$.post('/polis/php/api/thingSetup.php',
         		{data : jsonData},

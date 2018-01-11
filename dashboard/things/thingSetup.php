@@ -50,7 +50,7 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 	$().ready(function(){
 			$('#save-thing').click(page.saveThing);
 			$('#save-metric').click(page.createMetric);
-			$("input").on("focus", function() {
+			$("input, select").on("focus", function() {
 				   page.elementModified();
 				});
 			
@@ -93,6 +93,7 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
     				<table class="table-template">
         				<tr style="background: #dedede; color: black"><th>Thing Tag</th><td id="tag"><?php echo $thing->getTag()?></td></tr>
         				<tr><th>Thing Name</th><td><?php echo '<input id="name" type="text" value="'.$thing->getName().'" placeholder="Thing Name"/>';?></td></tr>
+        				<tr><th>Access Level</th><td><?php echo $pageBuilder->buildAccessLevelDropdown($thing->getUserTypeId());?></td></tr>
     				</table>
     				<button disabled="disabled"class="save-button" id="save-thing">Save</button>
 				</div>
