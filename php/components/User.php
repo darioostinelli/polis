@@ -89,6 +89,7 @@ class User{
         $this->user->email = $result->email;
         $this->user->accessLevel = $result->access_level;
         $this->user->userType = $result->id;
+        $this->user->userTypeName = $result->name;
     }
     
 }

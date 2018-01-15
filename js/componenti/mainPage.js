@@ -135,7 +135,7 @@ addUser = function(user){
 		color = "green";
 	userHtml =  userHtml.replace("%s",user.username); 
 	userHtml =  userHtml.replace("%s",color); 
-	userHtml =  userHtml.replace("%s",user.userType);  
+	userHtml =  userHtml.replace("%s",user.userTypeName);  
 	return userHtml.replace("%s",user.username);	
 }
 compareByUserType = function(a,b) {
