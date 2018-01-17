@@ -22,15 +22,12 @@
     {
         die('{"status":"error","error":"you cannot create a thing"}');
     }
-    
-
-    $tag = substr(crypt($data->name,substr($data->name, 0, 2)), 1);
-    $thing = new Thing($tag);
-    while($thing->exists()){
-        $tag = crypt($tag,substr($tag, 0, 2));
-        $thing = new Thing($tag);
+    $thing = new Thing($data->tag);
+    if($thing->exists() || strlen($data->tag) != 12){
+        die('{"status":"error","error":"Wrong thing tag. Please check if you have inserted a correct tag"}');
     }
-    if($thing->createThing($data->name, $data->userType, $user->getFamily(), $tag)){
+  
+    if($thing->createThing($data->name, $data->userType, $user->getFamily(), $data->tag)){
         echo '{"status":"success"}';
     }
     else{

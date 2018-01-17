@@ -66,8 +66,9 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 				<div class="alert" onclick="$(this).hide(100)"></div>
 				<div>
 					<h3 class="template-title">New Thing</h3>
-    				<table class="table-template">        				
-        				<tr style="background: #dedede; color: black"><th>Thing Name</th><td><input id="thing-name" type="text" value="" placeholder="Thing Name"/></td></tr>
+    				<table class="table-template">  
+    					<tr style="background: #ffffff; color: black"><th>Thing tag</th><td><input id="thing-tag" type="text" value="" placeholder="Thing Tag"/></td></tr>    					    				
+        				<tr><th>Thing Name</th><td><input id="thing-name" type="text" value="" placeholder="Thing Name"/></td></tr>
     					<tr><th>Access Level</th><td><?php echo $pageBuilder->buildAccessLevelDropdown('');?></td></tr>
     				</table>
     				<button class="save-button" id="save-thing">Save</button>

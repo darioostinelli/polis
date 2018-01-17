@@ -5,6 +5,7 @@ function addThingHandler () {
     	var data = {};    	
     	data.name = $('#thing-name').val();
     	data.userType = $('#user-type').val();
+    	data.tag = $('#thing-tag').val();
     	var jsonData = JSON.stringify(data);
     	$.post('/polis/php/api/addThing.php',
         		{data : jsonData},
