@@ -37,6 +37,9 @@ class User{
     function getAccessLevel(){
         return $this->user->accessLevel;
     }
+    function getUserTypeId(){
+        return $this->user->userType;
+    }
     function controlValidation($pass){
         return strcmp($this->user->password, $pass) == 0;
     }
@@ -85,7 +88,8 @@ class User{
         $this->user->password = $result->password;
         $this->user->email = $result->email;
         $this->user->accessLevel = $result->access_level;
-        $this->user->userType = $result->name;
+        $this->user->userType = $result->id;
+        $this->user->userTypeName = $result->name;
     }
     
 }

@@ -237,7 +237,7 @@ body{
 	width: -webkit-fill-available;
 	margin: 50px;
 	border-collapse: collapse;
-	border-radius: 15px;
+	
 }
 .table-template td,th{
 	text-align: left;
@@ -258,6 +258,79 @@ body{
 .table-template tr:first-child{
 	background: #2d2e30;
 	color: white;
+}
+.table-template input[type="text"]{
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid silver;
+	width: 80%;
+	padding-left: 10px;
+}
+
+.table-template select{
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid silver;
+	width: 80%;
+	padding-left: 10px;
+}
+.save-button{
+	background:  #dedede;
+	cursor: pointer;
+	padding: 10px 15px;
+	border: none;
+	margin-top: 30px;
+	margin-left: 50px;
+}
+.save-button:hover{
+	background:  #d0d0d0;
+}
+.alert{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 50px;
+	margin-right: 50px;
+	background: #42c5f4;
+	border: 3px solid blue;
+	border-radius: 5px;
+	padding: 20px;
+	color: white;
+	font-weight: bold;
+	display:none;
+}
+.hidden-tab{
+	display:none;
+}
+.tab-menu{
+	margin-left: 50px;
+	margin-right:50px;
+	margin-top: 30px;	
+	background: #2d2e30;
+}
+.tab-menu-element{
+	vertical-align: middle;
+	padding: 10px 15px;
+	color: white;
+	display: inline-block;
+	
+}
+.tab-menu-element:hover{
+	background: #1d1e20;
+}
+
+.add-button{
+	background:  #00d179;
+	cursor: pointer;
+	padding: 10px 15px;
+	border: none;
+	color: white;
+	margin-top: 30px;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+.add-button:hover{
+	background:  #00b159;	
 }
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
@@ -341,6 +414,17 @@ body{
 	.table-template{
 		margin: 0;
 	}
-	
+	.save-button{
+		margin-left: 0;
+	}
+	.alert{		
+		margin-left: 0;
+		margin-right: 0;		
+	}
+	.tab-menu{
+		margin:0px;
+		margin-top:30px;
+		margin-bottom:20px;
+	}
 }
 

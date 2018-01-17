@@ -48,8 +48,9 @@ function LoginHandler () {
     			}
     		})
     		.fail(function(){
-    			$('#login-log').text("Server error. Please try later");
+    			$('#login-log').text("Server error. Please try later ");
     		});
     }
+   
 
 }
