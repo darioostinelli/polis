@@ -317,6 +317,21 @@ body{
 .tab-menu-element:hover{
 	background: #1d1e20;
 }
+
+.add-button{
+	background:  #00d179;
+	cursor: pointer;
+	padding: 10px 15px;
+	border: none;
+	color: white;
+	margin-top: 30px;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+.add-button:hover{
+	background:  #00b159;	
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.header-menu{

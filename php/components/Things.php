@@ -66,6 +66,17 @@ class Thing
         }
         return false;
     }
+    
+    function createThing($name, $userType, $family, $tag){
+        $query = "INSERT INTO `things`(`tag`, `name`, `family_tag`, `user_type`) VALUES ('".$tag."','".$name."','".$family."','".$userType."')";
+        $db = new Database();
+        $result = $db->query($query);
+        if($result){
+            unset($_SESSION['thingList']);
+            return true;
+        }
+        return false;
+    }
     function getMetrics(){
         $query = "SELECT * FROM metrics_definition WHERE thing_tag='".$this->thing->tag."';";
         $db = new Database();
