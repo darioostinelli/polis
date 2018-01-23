@@ -28,8 +28,11 @@
     if(!$user->hasAccessTo($thing)){
         die('{"status":"error","error":"you have not access to this thing"}');
     }
+    if(strlen($data->metricTag) != 12){
+        die('{"status":"error","error":"Wrong Tag"}');
+    }
     $metric = new Metric(0);
-    if($metric->createMetric($data->thingTag, $data->name, $data->unit))
+    if($metric->createMetric($data->thingTag, $data->name, $data->unit, $data->metricTag))
         echo '{"status":"success"}';
     else
         echo '{"status":"error","error":"Internal error"}';

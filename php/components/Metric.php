@@ -21,9 +21,10 @@ class Metric
             $this->metric = $result[0]; //result must have only an element
         }
     }
-    public function createMetric($thing, $name, $unit){
+    public function createMetric($thing, $name, $unit, $tag){
         $db = new Database();
-        $query = "INSERT INTO `metrics_definition`( `thing_tag`, `name`, `unit`) VALUES ('".$thing."','".$name."','".$unit."')";
+        $query = "INSERT INTO `metrics_definition`( `thing_tag`, `name`, `unit`, `metric_tag`) VALUES ('".$thing."','".$name."','".$unit."','".$tag."')";
+        
         $result = $db->query($query);
         if(!$result)
             return false;
@@ -41,7 +42,12 @@ class Metric
         }
         return false;
     }
-    
+    public function getTag(){
+        if($this->exists()){
+            return $this->metric->metric_tag;
+        }
+        return false;
+    }
     public function getThingTag(){
         if($this->exists()){
             return $this->metric->thing_tag;

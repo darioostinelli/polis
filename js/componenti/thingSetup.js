@@ -56,6 +56,7 @@ function thingSetupHandler () {
     	data.thingTag = $('#tag').text(); 
     	data.name = $('#metric-name').val();
     	data.unit = $('#metric-unit').val();
+    	data.metricTag = $('#metric-tag').val();
     	var jsonData = JSON.stringify(data);
     	$.post('/polis/php/api/createMetric.php',
         		{data : jsonData},
@@ -76,15 +77,16 @@ function thingSetupHandler () {
 }
 
 appendMetricToTable = function(list){
-	$("#metrics-table").html('<tr style="background: #dedede; color: black"><th>Metric Name</th><th>Unit</th></tr>');
+	$("#metrics-table").html('<tr style="background: #dedede; color: black"><th>Metric Tag</th><th>Metric Name</th><th>Unit</th></tr>');
 	for(i = 0; i < list.length; i++){
-		var row = createMetricTableRow(list[i].name, list[i].unit);
+		var row = createMetricTableRow(list[i].metric_tag, list[i].name, list[i].unit);
 		$("#metrics-table").append(row);
 	}
 }
 
-createMetricTableRow = function(name, unit){
+createMetricTableRow = function(tag, name, unit){
 	var r = "<tr><td>";
+	r += tag + "<td>";
 	r += name + "<td>";
 	r += unit + "</td>";
 	r += "</tr>";
