@@ -22,9 +22,13 @@
     if(!$user->hasAccessTo($thing)){
         die('{"status":"error","error":"you cannot access this thing"}');
     }
-    $metricList = $thing->getMetrics();
+    $metricList = $thing->getMetrics();    
     if(count($metricList) == 0){
         die('{"status":"error","error":"thing have no metric"}');
+    }
+    $metricLogs = $thing->getMetricLogs();
+    if(count($metricLogs) == 0){
+        die('{"status":"error","error":"thing have no metric log"}');
     }
     $logs = array();   
     foreach($metricList as $metric){

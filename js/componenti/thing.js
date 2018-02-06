@@ -9,11 +9,12 @@ function thingHandler () {
     	$.post('/polis/php/api/getMetricLogs.php',
         		{data : jsonData},
         		function(data){
-        			if(data.status == "error"){
-        				$('.alert').text(data.error).show(100);
+        			decodedData = JSON.parse(data)
+        			if(decodedData.status == "error"){
+        				$('.alert').text(decodedData.error).show(100);
         			}
         			else{
-        				callback(JSON.parse(data));
+        				callback(decodedData);
         			}
         		})
         		.fail(function(){
