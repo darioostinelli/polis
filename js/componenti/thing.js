@@ -6,6 +6,7 @@ function thingHandler () {
     	data.thingTag = this.getUrlParam("tag");
     	var jsonData = JSON.stringify(data);
     	var callback = this.displayLogs;
+    	//var callback = this.displayCharts;
     	$.post('/polis/php/api/getMetricLogs.php',
         		{data : jsonData},
         		function(data){
@@ -36,7 +37,13 @@ function thingHandler () {
     	}
     	//$('#metrics-container').html(tables);
     }
+    this.displayCharts = function(data){
+    	for(let i = 0; i < data.length; i++){    		
+    		$('.notice-board').append("<div class='chart-container' id='metrics-container"+i+"'></div>");
+    		displayChart(i, data[i].metric, data[i].unit, data[i].list);
+    	}
   
+    }
 }
 
 displayMetric = function(metric, unit, list){
@@ -47,7 +54,7 @@ displayMetric = function(metric, unit, list){
 		var date = new Date(list[i].time_stamp);
 		html += "<tr>";
 		html += "<td>" + date.getDate() + "/" + date.getMonth()+1  + "/" + date.getFullYear();
-		html += "<td>" + date.getHours() + ":" + date.getMinutes();
+		html += "<td>" + getTimeString(date);
 		html += "<td>" + list[i].value;
 		html += "<td>" + unit + "</td>";
 		html += "</tr>";
@@ -63,4 +70,84 @@ function compareTimeStamps(a,b) {
 	    return -1;
 	  return 0;
 	}
+function displayChart(index, title, unit, data){
+	list = getDataSeries(data);
+	Highcharts.chart('metrics-container'+index, {
 
+		chart: {
+	        type: 'spline'
+	    },
+	    
+		title: {
+	        text: title
+	    },
+	    
+	    xAxis: {
+	        type: 'datetime',	       
+	        title: {
+	            text: 'Date'
+	        }
+	    },
+
+	    yAxis: {
+	        title: {
+	            text: unit
+	        }
+	    },
+	    legend: {
+	        layout: 'vertical',
+	        align: 'right',
+	        verticalAlign: 'middle'
+	    },
+
+	    plotOptions: {
+	        series: {
+	            label: {
+	                connectorAllowed: false
+	            }
+	            
+	        }
+	    },
+
+	    series: [{
+	        name: title,
+	        data: list
+	    }],
+
+	    responsive: {
+	        rules: [{
+	            condition: {
+	                maxWidth: 500
+	            },
+	            chartOptions: {
+	                legend: {
+	                    layout: 'horizontal',
+	                    align: 'center',
+	                    verticalAlign: 'bottom'
+	                }
+	            }
+	        }]
+	    }
+
+	});
+}
+
+function getDataSeries(list){
+	var serie = [];
+	for(let i = 0; i < list.length; i++){
+		var d = new Date(list[i].time_stamp);		
+		var date = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds());
+		var value = parseFloat(list[i].value);
+		var item = [date, value];
+		serie.push(item);
+	}
+	return serie;
+}
+
+function getTimeString(date){
+	string = date.getHours() + ":";
+	string += date.getMinutes() >= 10 ? date.getMinutes() : "0" + date.getMinutes();
+	string += ":";
+	string += date.getSeconds() >= 10 ? date.getSeconds() : "0" + date.getSeconds();
+	return string;
+}
