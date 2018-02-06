@@ -1,4 +1,6 @@
 <?php
+    use php\components\Metric;
+
     $includePath = $_SERVER['DOCUMENT_ROOT'];
     $includePath .= "/polis/php";
     ini_set('include_path', $includePath);
@@ -86,5 +88,39 @@ class Thing
         }
         else return $result;
     }
+    function getMetricLogs(){
+        $query = "SELECT * FROM metrics WHERE thing_tag='".$this->thing->tag."';";
+        $db = new Database();
+        $result = $db->query($query);
+        if(is_bool($result) && !$result){
+            return false;
+        }
+        else return $result;
+    }
+    function hasMetric($metricTag){
+        $metricList = $this->getMetrics();
+        $found = false;
+        foreach($metricList as $metric){
+            if($metric->metric_tag == $metricTag){
+                $found = true;
+                break;
+            }
+        }
+        return $found;
+    }
+    function publishMetricLog($metricTag, $value){
+        if(!$this->hasMetric($metricTag))
+            return false;
+        $metric = new Metric($metricTag);
+        return $metric->publishMetricLog($value);
+    }
+    
+    function getMetricLogsByMetricDefinition($metricTag){
+        if(!$this->hasMetric($metricTag))
+            return false;
+        $metric = new Metric($metricTag);
+        return $metric->getMetricLogs();
+    }
+   
 }
 

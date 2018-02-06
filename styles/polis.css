@@ -332,6 +332,10 @@ body{
 .add-button:hover{
 	background:  #00b159;	
 }
+
+#metrics-container h2{
+	color: white;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.header-menu{

@@ -9,10 +9,10 @@ class Metric
 {
 
     private $metric;
-    public function __construct($id)
+    public function __construct($tag)
     {
         $db = new Database();
-        $query = "SELECT * FROM metrics_definition WHERE id='".$id."'";
+        $query = "SELECT * FROM metrics_definition WHERE metric_tag='".$tag."'";
         $result = $db->query($query);
         if(!$result || count($result) == 0){ //an error occured while executing the query or thing does not exist
             $this->thing = false;
@@ -81,6 +81,31 @@ class Metric
         if($result)
             return true;
             return false;
+    }
+    
+    function publishMetricLog($value){
+        $metricDefinitionTag = $this->getTag();
+        $thingTag = $this->getThingTag();
+        if(!$this->exists())
+            return false;
+        $query = "INSERT INTO `metrics`(`thing_tag`, `metric_definition_tag`, `value`) VALUES ('".$thingTag."','".$metricDefinitionTag."','".$value."')";
+        $db = new Database();
+        $result = $db->query($query);
+        if($result)
+           return true;
+        return false;
+    }
+    
+    function getMetricLogs(){
+        if(!$this->exists())
+            return false;
+        $metricTag = $this->getTag();
+        $query = "SELECT * FROM metrics WHERE metric_definition_tag='".$metricTag."';";
+        $db = new Database();
+        $result = $db->query($query);
+        if($result)
+            return $result;
+        return false;
     }
 }
 

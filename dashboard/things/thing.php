@@ -42,9 +42,13 @@ $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
 <script src="/polis/js/librerie/jquery-3.2.1.js"></script>
 <script src="/polis/js/componenti/mainPage.js"></script>
 <script src="/polis/js/funzioni/mainPage.js"></script>
+<script src="/polis/js/componenti/thing.js"></script>
 <link rel="shortcut icon" href="/polis/logo.ico" />
 <script>
-	
+	$().ready(function(){
+		var thing = new thingHandler();
+		thing.getLogsByMetrics();
+		});
 </script>
 </head>
 <body style="background: #333333">
@@ -68,8 +72,12 @@ $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
 			<div class="header only-desktop shadow">
 				<div class="header-element" onclick="logout()">Logout</div>
 			</div>
-			<div class="notice-board shadow">
+			<div class="notice-board shadow">			
 				<h2 class="template-title"><a href="/polis/dashboard/mainPage.php">Things List</a> > <?php echo $_GET['name']?></h2>
+				<div class="alert" onclick="$(this).hide(100)"></div>
+				<div>    				
+    				<div id="metrics-container"></div>
+				</div>
 			</div>
 		</div>
     	
