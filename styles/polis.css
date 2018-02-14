@@ -342,6 +342,13 @@ body{
 	min-width: 350px;
 	max-width: 90%;
 }
+
+#chart-options{
+	margin: 25px;
+	height: 30px;
+	widht: 100px;
+	border-radius: 3px;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape){
 	.header-menu{

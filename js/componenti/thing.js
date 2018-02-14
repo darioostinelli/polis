@@ -1,3 +1,6 @@
+var charts;
+
+
 function thingHandler () {
     this.logout = $('.logout'); 
     
@@ -5,8 +8,7 @@ function thingHandler () {
     	var data = {};  	
     	data.thingTag = this.getUrlParam("tag");
     	var jsonData = JSON.stringify(data);
-    	var callback = this.displayLogs;
-    	//var callback = this.displayCharts;
+    	var callback = this.displayLogs;    	
     	$.post('/polis/php/api/getMetricLogs.php',
         		{data : jsonData},
         		function(data){
@@ -15,9 +17,9 @@ function thingHandler () {
         				$('.alert').text(decodedData.error).show(100);
         			}
         			else{
-        				//callback(decodedData); 
-        				var c = new Charts(decodedData);
-        				c.displayCharts();
+        				//callback(decodedData); Display in tables
+        				charts = new Charts(decodedData);
+        				charts.displayTodaysData();
         			}
         		})
         		.fail(function(){
@@ -72,67 +74,7 @@ function compareTimeStamps(a,b) {
 	    return -1;
 	  return 0;
 	}
-function displayChart(index, title, unit, data){
-	list = getDataSeries(data);
-	Highcharts.chart('metrics-container'+index, {
 
-		chart: {
-	        type: 'spline'
-	    },
-	    
-		title: {
-	        text: title
-	    },
-	    
-	    xAxis: {
-	        type: 'datetime',	       
-	        title: {
-	            text: 'Date'
-	        }
-	    },
-
-	    yAxis: {
-	        title: {
-	            text: unit
-	        }
-	    },
-	    legend: {
-	        layout: 'vertical',
-	        align: 'right',
-	        verticalAlign: 'middle'
-	    },
-
-	    plotOptions: {
-	        series: {
-	            label: {
-	                connectorAllowed: false
-	            }
-	            
-	        }
-	    },
-
-	    series: [{
-	        name: title,
-	        data: list
-	    }],
-
-	    responsive: {
-	        rules: [{
-	            condition: {
-	                maxWidth: 500
-	            },
-	            chartOptions: {
-	                legend: {
-	                    layout: 'horizontal',
-	                    align: 'center',
-	                    verticalAlign: 'bottom'
-	                }
-	            }
-	        }]
-	    }
-
-	});
-}
 
 function getDataSeries(list){
 	var serie = [];
