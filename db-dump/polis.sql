@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 15, 2018 alle 17:17
+-- Creato il: Feb 14, 2018 alle 18:24
 -- Versione del server: 10.1.28-MariaDB
 -- Versione PHP: 5.6.32
 
@@ -45,6 +45,48 @@ INSERT INTO `families` (`tag`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `metrics`
+--
+
+CREATE TABLE `metrics` (
+  `metric_id` int(11) NOT NULL,
+  `thing_tag` varchar(12) COLLATE utf8_bin NOT NULL,
+  `metric_definition_tag` varchar(12) COLLATE utf8_bin NOT NULL,
+  `value` float NOT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dump dei dati per la tabella `metrics`
+--
+
+INSERT INTO `metrics` (`metric_id`, `thing_tag`, `metric_definition_tag`, `value`, `time_stamp`) VALUES
+(1, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.05, '2018-01-23 17:17:21'),
+(2, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.22, '2018-01-25 09:25:17'),
+(4, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 122, '2018-01-25 09:26:56'),
+(5, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 128, '2018-01-25 09:27:00'),
+(6, 'bbbbbbbbbbbb', 'caaaaaaaaaaa', -3, '2018-02-06 12:58:37'),
+(7, 'cccccccccccc', 'daaaaaaaaaaa', 25, '2018-02-06 13:03:12'),
+(8, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 85, '2018-02-06 16:05:08'),
+(9, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 90, '2018-02-06 16:04:12'),
+(10, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 95, '2018-02-06 16:03:14'),
+(11, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 87, '2018-02-06 16:02:17'),
+(12, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 1.99, '2018-02-14 15:39:06'),
+(13, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.02, '2018-02-14 15:39:15'),
+(14, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.1, '2018-02-14 15:39:18'),
+(15, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 1.95, '2018-02-14 15:39:25'),
+(16, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 55, '2018-02-14 15:41:26'),
+(17, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 59, '2018-02-14 15:41:30'),
+(18, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 65, '2018-02-14 15:41:33'),
+(19, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 59, '2018-02-14 15:41:36'),
+(20, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 35, '2018-02-14 15:41:43'),
+(21, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 15, '2018-02-14 15:41:47'),
+(22, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 0, '2018-02-14 15:41:50'),
+(23, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 35, '2018-02-14 15:41:53');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `metrics_definition`
 --
 
@@ -52,21 +94,24 @@ CREATE TABLE `metrics_definition` (
   `id` int(11) NOT NULL,
   `thing_tag` varchar(12) COLLATE utf8_bin NOT NULL,
   `name` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `unit` varchar(50) COLLATE utf8_bin DEFAULT NULL
+  `unit` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `metric_tag` varchar(12) COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dump dei dati per la tabella `metrics_definition`
 --
 
-INSERT INTO `metrics_definition` (`id`, `thing_tag`, `name`, `unit`) VALUES
-(1, 'aaaaaaaaaaaa', 'Velocita', 'Kmh'),
-(2, 'aaaaaaaaaaaa', 'Pressione', 'bar'),
-(4, 'bbbbbbbbbbbb', 'Temperatura', 'C'),
-(5, 'cccccccccccc', 'Temperatura', 'C'),
-(6, 'dddddddddddd', 'Temperatura', 'C'),
-(7, 'eeeeeeeeeeee', 'Accensione', ''),
-(8, 'eeeeeeeeeeee', 'LuminositÃ ', 'cd');
+INSERT INTO `metrics_definition` (`id`, `thing_tag`, `name`, `unit`, `metric_tag`) VALUES
+(1, 'aaaaaaaaaaaa', 'Velocita', 'Kmh', 'aaaaaaaaaaaa'),
+(2, 'aaaaaaaaaaaa', 'Pressione', 'bar', 'baaaaaaaaaaa'),
+(4, 'bbbbbbbbbbbb', 'Temperatura', 'C', 'caaaaaaaaaaa'),
+(5, 'cccccccccccc', 'Temperatura', 'C', 'daaaaaaaaaaa'),
+(6, 'dddddddddddd', 'Temperatura', 'C', 'eaaaaaaaaaaa'),
+(7, 'eeeeeeeeeeee', 'Accensione', '', 'faaaaaaaaaaa'),
+(8, 'eeeeeeeeeeee', 'LuminositÃ ', 'cd', 'gaaaaaaaaaaa'),
+(9, 'hHu/cfLoG0Yc', 'VelocitÃ ', 'kmh', 'haaaaaaaaaaa'),
+(10, 'rsI2bBDAbw3I', 'Temperatura', 'Â°C', 'iaaaaaaaaaaa');
 
 -- --------------------------------------------------------
 
@@ -90,8 +135,9 @@ INSERT INTO `things` (`tag`, `name`, `family_tag`, `user_type`) VALUES
 ('bbbbbbbbbbbb', 'Freezer', '123456789012', 3),
 ('cccccccccccc', 'Temperatura Zona Giorno', '123456789012', 2),
 ('dddddddddddd', 'Temperatura Zona Notte', '123456789012', 2),
-('eeeeeeeeeeee', 'Luci Giardino', '123456789012', 3),
-('zzzzzzzzzzzz', 'Thing Altra Familgia', '000000000000', 3);
+('eeeeeeeeeeee', 'Luci Giardino', '123456789012', 1),
+('zzzzzzzzzzzz', 'Thing Altra Familgia', '000000000000', 3),
+('rsI2bBDAbw3I', 'Frigorifero', 'a7hzR6ogCIx2', 2);
 
 -- --------------------------------------------------------
 
@@ -150,10 +196,17 @@ ALTER TABLE `families`
   ADD PRIMARY KEY (`tag`);
 
 --
+-- Indici per le tabelle `metrics`
+--
+ALTER TABLE `metrics`
+  ADD PRIMARY KEY (`metric_id`);
+
+--
 -- Indici per le tabelle `metrics_definition`
 --
 ALTER TABLE `metrics_definition`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `metric_tag` (`metric_tag`);
 
 --
 -- Indici per le tabelle `things`
@@ -179,10 +232,16 @@ ALTER TABLE `users_definition`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `metrics`
+--
+ALTER TABLE `metrics`
+  MODIFY `metric_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
 -- AUTO_INCREMENT per la tabella `metrics_definition`
 --
 ALTER TABLE `metrics_definition`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `users_definition`
