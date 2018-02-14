@@ -43,6 +43,7 @@ $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
 <script src="/polis/js/componenti/mainPage.js"></script>
 <script src="/polis/js/funzioni/mainPage.js"></script>
 <script src="/polis/js/componenti/thing.js"></script>
+<script src="/polis/js/componenti/chart.js"></script>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <link rel="shortcut icon" href="/polis/logo.ico" />
 <script>

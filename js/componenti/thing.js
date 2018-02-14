@@ -15,7 +15,9 @@ function thingHandler () {
         				$('.alert').text(decodedData.error).show(100);
         			}
         			else{
-        				callback(decodedData);
+        				//callback(decodedData); 
+        				var c = new Charts(decodedData);
+        				c.displayCharts();
         			}
         		})
         		.fail(function(){
