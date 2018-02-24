@@ -14,18 +14,20 @@
 		data.metricTag = $('#metric').val();
 		data.value = $('#value').val();
 		jsonData = JSON.stringify(data);
-		$.post('/polis/php/api/publishMetric.php',
-        		{data : jsonData},
-        		function(data){
-        			decodedData = JSON.parse(data)
+		$.ajax({
+			type: "POST",
+			data: {data : jsonData},
+			dataType: 'json',
+			url: "http://polis.inno-school.org/polis/php/api/publishMetric.php"
+			}).done(function (data) {
+				decodedData = JSON.parse(data)
         			if(decodedData.status == "error"){
         				$('#alert').text(decodedData.error).show(100);
         			}
         			else{
         				$('#alert').text("OK").show(100);
         			}
-        		})
-        		.fail(function(){
+			}).fail(function(){
         			$('#alert').text("Server error").show(100);
         		});
 	}

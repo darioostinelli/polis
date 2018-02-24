@@ -72,5 +72,20 @@ class PageBuilder
         $html .= "</select>";
         return $html;
     }
+    
+    public function buildChartDisplayOptionsDropdown(){
+        $html = "<select id='chart-options'>";
+        $html .= "<option value='today' selected>Today</option>";
+        $html .= "<option value='5-val'>Last 5 values</option>";
+        $html .= "<option value='10-val'>Last 10 values</option>";
+        $html .= "<option value='20-val'>Last 20 values</option>";
+        $html .= "<option value='2-days'>Last 2 Days</option>";
+        $html .= "<option value='7-days'>Last week</option>";
+        $html .= "<option value='14-days'>Last 2 weeks</option>";
+        $html .= "<option value='30-days'>Last 30 Days</option>";
+        $html .= "<option value='all'>All</option>";
+        $html .= "</select>";
+        return $html;
+    }
 }
 
