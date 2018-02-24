@@ -15,7 +15,7 @@ class Metric
         $query = "SELECT * FROM metrics_definition WHERE metric_tag='".$tag."'";
         $result = $db->query($query);
         if(!$result || count($result) == 0){ //an error occured while executing the query or thing does not exist
-            $this->thing = false;
+            $this->metric = false;
         }
         else{
             $this->metric = $result[0]; //result must have only an element
@@ -72,6 +72,12 @@ class Metric
         }
         return false;
     }
+    /**
+     * Update metric definition
+     * @param string $name
+     * @param string $unit
+     * @return boolean
+     */
     function updateMetric($name, $unit){
         if(!$this->exists())
             return false;
@@ -82,20 +88,26 @@ class Metric
             return true;
             return false;
     }
-    
+    /**
+     * Publish a metric log
+     * @param float $value
+     * @return boolean
+     */
     function publishMetricLog($value){
         $metricDefinitionTag = $this->getTag();
         $thingTag = $this->getThingTag();
         if(!$this->exists())
             return false;
-        $query = "INSERT INTO `metrics`(`thing_tag`, `metric_definition_tag`, `value`) VALUES ('".$thingTag."','".$metricDefinitionTag."','".$value."')";
+        $query = "INSERT INTO `metrics`(`thing_tag`, `metric_definition_tag`, `value`, `checked`) VALUES ('".$thingTag."','".$metricDefinitionTag."','".$value."',0)";
         $db = new Database();
         $result = $db->query($query);
         if($result)
            return true;
         return false;
     }
-    
+   /** 
+    * Return all logs of the metric 
+    */
     function getMetricLogs(){
         if(!$this->exists())
             return false;
@@ -105,6 +117,48 @@ class Metric
         $result = $db->query($query);
         if($result)
             return $result;
+        return false;
+    }
+    
+    function getUncheckedMetricLogs(){
+        if(!$this->exists())
+            return false;
+            $metricTag = $this->getTag();
+            $query = "SELECT * FROM metrics WHERE metric_definition_tag='".$metricTag."' AND checked=0;";
+            $db = new Database();
+            $result = $db->query($query);
+            if($result)
+                return $result;
+                return false;
+    }
+    /**
+     * Register a failure in failures table
+     * @param float $value
+     * @param string $timestamp
+     * @return boolean
+     */
+    function saveFailureLog($value, $timestamp){        
+        if(!$this->exists())
+            return false;
+            $query = "INSERT INTO `failures`(`time_stamp`, `metric_tag`, `value`) VALUES ('".$timestamp."','".$this->getMetric()->metric_tag."',".$value.")";
+            $db = new Database();
+            $result = $db->query($query);
+            if($result)
+                return true;
+            return false;
+    }
+    /**
+     * Set checked flag in metric table to true 
+     */
+    function checkAllValue(){
+        if(!$this->exists())
+            return false;
+        $query = "UPDATE `metrics` SET `checked`=1 WHERE `checked`=0 AND `metric_definition_tag`='".$this->getMetric()->metric_tag."'";
+        
+        $db = new Database();
+        $result = $db->query($query);
+        if($result)
+           return true;
         return false;
     }
 }

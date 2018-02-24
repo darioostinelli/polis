@@ -18,9 +18,10 @@
 			type: "POST",
 			data: {data : jsonData},
 			dataType: 'json',
-			url: "http://polis.inno-school.org/polis/php/api/publishMetric.php"
+			url: "/polis/php/api/publishMetric.php"
 			}).done(function (data) {
-				decodedData = JSON.parse(data)
+				//decodedData = JSON.parse(data)
+				decodedData = data;
         			if(decodedData.status == "error"){
         				$('#alert').text(decodedData.error).show(100);
         			}
