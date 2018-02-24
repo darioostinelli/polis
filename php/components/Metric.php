@@ -211,5 +211,29 @@ class Metric
             return $result;
         return false;
     }
+
+    /**
+     * Return an array with all the active alerts.
+     * If alert does not exist or if no alert is active, return false
+     *
+     * @return mixed
+     */
+    function getActiveAlerts()
+    {
+        $alerts = $this->getAllAlerts();
+        $list = array();
+        if (! $alerts)
+            return false;
+        foreach ($alerts as $alert) {
+            $a = new Alert($alert->id_alert);
+            $logs = $this->getUncheckedMetricLogs();
+            if ($a->isActive($logs)) {
+                array_push($list, $alert);
+            }
+        }
+        if (count($list) == 0)
+            return false;
+        return $list;
+    }
 }
 

@@ -86,7 +86,7 @@ class Alert
      */
     public function isActive($metricLogs)
     {
-        if (count($metricLogs) <= 0)
+        if (!$metricLogs)
             return false;
         // echo "<br><br>".json_encode($metricLogs);
         if (! $this->alert)
