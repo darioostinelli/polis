@@ -17,7 +17,7 @@ function thingHandler () {
         				$('.alert').text(decodedData.error).show(100);
         			}
         			else{
-        				//callback(decodedData); Display in tables
+        				//callback(decodedData);// Display in tables
         				charts = new Charts(decodedData);
         				charts.displayTodaysData();
         			}
@@ -57,7 +57,7 @@ displayMetric = function(metric, unit, list){
 	for(let i = 0; i < list.length; i++){
 		var date = new Date(list[i].time_stamp);
 		html += "<tr>";
-		html += "<td>" + date.getDate() + "/" + date.getMonth()+1  + "/" + date.getFullYear();
+		html += "<td>" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 		html += "<td>" + getTimeString(date);
 		html += "<td>" + list[i].value;
 		html += "<td>" + unit + "</td>";
