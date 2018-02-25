@@ -303,7 +303,7 @@ body {
 	color: white;
 }
 
-.table-template input[type="text"] {
+.table-template input[type="text"],  input[type="number"]{
 	height: 30px;
 	border-radius: 5px;
 	border: 1px solid silver;

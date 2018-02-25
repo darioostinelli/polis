@@ -18,7 +18,7 @@ class Alert
     public static $FAILURE = "FAILURE";
 
     // Alert rules
-    public static $GREATHER_THAN = ">";
+    public static $GREATER_THAN = ">";
 
     public static $LESS_THAN = "<";
 
@@ -35,7 +35,16 @@ class Alert
             $this->alert = $result[0]; // result must have only an element
         }
     }
-
+    public function createAlert($type, $rule, $value, $metricTag){
+        $db = new Database();
+        $query = "INSERT INTO `alerts`(`metric_tag`, `rule`, `value`, `type`) VALUES ('".$metricTag."','".$rule."','".$value."','".$type."')";
+        $result = $db->query($query);
+        if (! $result || count($result) == 0) { // an error occured while executing the query or thing does not exist
+           return false;
+        } else {
+            return true;
+        }
+    }
     public function exists()
     {
         if (! $this->alert)
@@ -149,7 +158,7 @@ class Alert
      */
     private function checkWarningAlert($value)
     {
-        if ($this->getRule() == Alert::$GREATHER_THAN) {
+        if ($this->getRule() == Alert::$GREATER_THAN) {
             if ($value > $this->getValue())
                 return true;
         }
@@ -174,7 +183,7 @@ class Alert
         $failure = false;
         $metric = new Metric($this->getMetric());
         foreach ($logs as $log) {
-            if ($this->getRule() == Alert::$GREATHER_THAN) {
+            if ($this->getRule() == Alert::$GREATER_THAN) {
                 if ($log->value > $this->getValue()) {
                     $failure = true;
                     $metric->saveFailureLog($log->value, $log->time_stamp);

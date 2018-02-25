@@ -73,11 +73,35 @@ function thingSetupHandler () {
         			$('.alert').text("Server error").show(100);
         		});
     }
-  
+    this.saveAlert = function(){
+    	var url_string = window.location.href;
+    	var url = new URL(url_string);
+    	var metricTag = url.searchParams.get("metric_tag");
+    	var data = {};
+    	data.metricTag = metricTag; 
+    	data.type = $('#alert-type').val();
+    	data.rule = $('#alert-rule').val();
+    	data.value = $('#alert-value').val();
+    	var jsonData = JSON.stringify(data);
+    	$.post('/polis/php/api/createAlert.php',
+        		{data : jsonData},
+        		function(data){
+        			var decodedData = JSON.parse(data);
+        			if(decodedData.status=="error"){
+        				$('.alert').text(decodedData.error).show(100);
+        			}
+        			else{
+        				$('.alert').text("Alert created").show(100).delay(2500).hide(100);
+        			}
+        		})
+        		.fail(function(){
+        			$('.alert').text("Server error").show(100);
+        		});
+    }
 }
 
 appendMetricToTable = function(list){
-	$("#metrics-table").html('<tr style="background: #dedede; color: black"><th>Metric Tag</th><th>Metric Name</th><th>Unit</th></tr>');
+	$("#metrics-table").html('<tr><th>Metric Tag</th><th>Metric Name</th><th>Unit</th></tr>');
 	for(i = 0; i < list.length; i++){
 		var row = createMetricTableRow(list[i].metric_tag, list[i].name, list[i].unit);
 		$("#metrics-table").append(row);
@@ -85,7 +109,7 @@ appendMetricToTable = function(list){
 }
 
 createMetricTableRow = function(tag, name, unit){
-	var r = "<tr><td>";
+	var r = "<tr onclick=\"loadAlertSetup('" + tag + "')\"><td>";
 	r += tag + "<td>";
 	r += name + "<td>";
 	r += unit + "</td>";

@@ -19,6 +19,13 @@ function loadUserPage(username){
 	
 	window.location.href = path;
 }
+
+function loadAlertSetup(tag){
+	var path = "/polis/dashboard/alerts/alerts.php?metric_tag=";
+	path += tag;
+	
+	window.location.href = path;
+}
 function logout(){
 	  $.post('/polis/php/api/logout.php',
 	    		{data : true},

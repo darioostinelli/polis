@@ -16,7 +16,9 @@ class PageBuilder
 {
 
     private $user;
+
     public static $br = "<br>";
+
     /**
      *
      * @param \User $user
@@ -103,7 +105,7 @@ class PageBuilder
 
     /**
      * Return HTML string with all alerts.
-     * 
+     *
      * @param array $activeAlerts
      *            Array with all active alerts
      * @param array $historicalFailure
@@ -112,52 +114,49 @@ class PageBuilder
      */
     public function buildMainPageAlerts($activeAlerts, $historicalFailure)
     {
-       // echo json_encode($activeAlerts);
+        // echo json_encode($activeAlerts);
         $failNumber = 0;
         $warningNumber = 0;
         $warningDetails = "Warning<table><tr><th>Thing<th>Metric<th>Rule<th>Value</th></tr>";
         $failureDetails = "Failure<table><tr><th>Thing<th>Metric<th>Date<th>Time<th>Value</th></tr>";
-        //echo "ACTIVE ALERTS: <br>";
+        // echo "ACTIVE ALERTS: <br>";
         foreach ($activeAlerts as $thing) {
-           // echo "....|_".$thing->thing_name . ": <br>";
+            // echo "....|_".$thing->thing_name . ": <br>";
             foreach ($thing->metrics as $metric) {
-             //   echo "........|_".$metric->metric_name. ": <br>";
+                // echo "........|_".$metric->metric_name. ": <br>";
                 foreach ($metric->alerts as $alert) {
-                    if($alert->type == Alert::$WARNING){
-                        $warningNumber++;
+                    if ($alert->type == Alert::$WARNING) {
+                        $warningNumber ++;
                         $warningDetails .= $this->getWarningDetailString($thing, $metric, $alert);
-                    }
-                    else if($alert->type == Alert::$FAILURE){
-                        $failNumber++;
+                    } else if ($alert->type == Alert::$FAILURE) {
+                        $failNumber ++;
                         $failureDetails .= $this->getFailureDetailString($thing->thing_tag, $metric->metric_tag, $alert);
                     }
-                   // echo "............|_".$alert->type . " " . $alert->rule . " " . $alert->value . "<br>";
+                    // echo "............|_".$alert->type . " " . $alert->rule . " " . $alert->value . "<br>";
                 }
-                //echo "<br>";
+                // echo "<br>";
             }
             $warningDetails .= "</table>";
-            foreach ($historicalFailure as $failure){
-                $failNumber++;
+            foreach ($historicalFailure as $failure) {
+                $failNumber ++;
                 $failureDetails .= $this->getFailureDetailString($failure->thing_tag, $failure->metric_tag, $failure);
             }
             $failureDetails .= "</table>";
             $html = "<div class='alert-menu warning'>
-                    <div>".$warningNumber."</div>
-                    <div class='alert-details shadow'>".$warningDetails."</div>
+                    <div>" . $warningNumber . "</div>
+                    <div class='alert-details shadow'>" . $warningDetails . "</div>
                 </div>";
             $html .= "<div class='alert-menu failure'>
-                    <div>".$failNumber."</div>
-                    <div class='alert-details shadow'>".$failureDetails."</div>
+                    <div>" . $failNumber . "</div>
+                    <div class='alert-details shadow'>" . $failureDetails . "</div>
                 </div>";
             return $html;
         }
-        
-        
     }
 
     /**
      * Return HTML string with all alerts
-     * 
+     *
      * @param array $activeAlerts
      *            Array with all active alerts connected to the thing
      * @param array $historicalFailure
@@ -165,41 +164,92 @@ class PageBuilder
      */
     public function buildThingPageAlerts($activeAlerts, $historicalFailure)
     {}
+
     /**
      * Return a HTML string with a <tr> element which contains information about tha alert
+     * 
      * @param \stdClass $thing
      * @param \stdClass $metric
      * @param \stdClass $alert
-     * @return string 
+     * @return string
      */
     private function getWarningDetailString($thing, $metric, $alert)
     {
-        $html = "<tr onclick='loadThingPage(\"".$thing->thing_tag."\")'><td>";
+        $html = "<tr onclick='loadThingPage(\"" . $thing->thing_tag . "\")'><td>";
         $html .= $thing->thing_name . "<td>";
         $html .= $metric->metric_name . "<td>";
         $html .= $alert->rule . "<td>";
         $html .= $alert->value . "</td></tr>";
         return $html;
     }
+
     private function getFailureDetailString($thing, $metric, $alert)
     {
-        $m = new Metric($metric); 
+        $m = new Metric($metric);
         $t = new \Thing($thing);
-        $html = "<tr onclick='loadThingPage(\"".$t->getTag()."\")'><td>";
+        $html = "<tr onclick='loadThingPage(\"" . $t->getTag() . "\")'><td>";
         $html .= $t->getName() . "<td>";
         $html .= $m->getName() . "<td>";
-        if(isset($alert->time_stamp)){
+        if (isset($alert->time_stamp)) {
             $ts = new Timestamp($alert->time_stamp);
             $d = $ts->getDate();
-            $time = $ts ->getTime();
-            $html .=  $d->year. "-". $d->month. "-". $d->day."<td>";
-            $html .= $time->hour.":".$time->minute. "<td>";
-        }
-        else{
+            $time = $ts->getTime();
+            $html .= $d->year . "-" . $d->month . "-" . $d->day . "<td>";
+            $html .= $time->hour . ":" . $time->minute . "<td>";
+        } else {
             $html .= "Now" . "<td>";
             $html .= "Now" . "<td>";
         }
         $html .= $alert->value . "</td></tr>";
+        return $html;
+    }
+
+    /**
+     * Return HTML string with table *ROWS* containing the information about all alerts bounded to the metric
+     * 
+     * @param string $metricTag
+     * @return string (HTML)
+     */
+    public function buildAlertsPageAlertsList($metricTag)
+    {
+        $metric = new Metric($metricTag);
+        $alerts = $metric->getAllAlerts();
+        $html = "";
+        if (count($alerts) == 0 || ! $alerts) {
+            $html = "<tr><td>-<td>-<td>-</td></tr>";
+        } else {
+            foreach ($alerts as $alert) {
+                $html .= "<tr><td>" . $alert->type;
+                $html .= "<td>" . $alert->rule;
+                $html .= "<td>" . $alert->value . "</td></tr>";
+            }
+        }
+        return $html;
+    }
+    
+    /**
+     * Return the HTML select element with all possible alert types
+     * @param string $id Id of the html select element
+     * @return string (HTML)
+     */
+    public function buildAlertTypeDropdown($id){
+        $html = "<select id='".$id."'>";
+        $html .= "<option selected value='".Alert::$WARNING."' selected>Warning</option>";
+        $html .= "<option value='".Alert::$FAILURE."' >Failure</option>";
+        $html .= "</select>";
+        return $html;
+    }
+    /**
+     * Return the HTML select element with all possible alert rules
+     * @param string $id Id of the html select element
+     * @return string (HTML)
+     */
+    public function buildAlertRuleDropDown($id){
+        $html = "<select id='".$id."'>";
+        $html .= "<option selected value='".Alert::$GREATER_THAN."' selected>></option>";
+        $html .= "<option value='".Alert::$LESS_THAN."' ><</option>";
+        $html .= "<option value='".Alert::$EQUAL_TO."' >=</option>";
+        $html .= "</select>";
         return $html;
     }
 }

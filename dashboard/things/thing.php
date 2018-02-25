@@ -29,6 +29,8 @@ if(!$user->hasAccessTo($thing)){
 }
 $pageBuilder = new PageBuilder($user);
 $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
+$failures = $user->getFailureList();
+$activeAlerts = $user->getAllActiveAlerts();
 // echo json_encode($_SESSION['user']);
 ?>
 
@@ -73,7 +75,8 @@ $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
 		</div>
 		<div class="dashboard">
 			<div class="header only-desktop shadow">
-				<div class="header-element" onclick="logout()">Logout</div>
+				<?php echo $pageBuilder->buildMainPageAlerts($activeAlerts, $failures); ?>
+				<div class="header-element logout-button" onclick="logout()">Logout</div>
 			</div>
 			<div class="notice-board shadow">			
 				<h2 class="template-title"><a href="/polis/dashboard/mainPage.php">Things List</a> > <?php echo $thing->getName();?></h2>
