@@ -16,6 +16,8 @@
     $user = new User($_SESSION['user']->username);
     $pageBuilder = new PageBuilder($user);
     $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
+    $failures = $user->getFailureList();
+    $activeAlerts = $user->getAllActiveAlerts();
    // echo json_encode($_SESSION['user']);
 ?>
 
@@ -56,6 +58,7 @@
 		</div>
 		<div class="dashboard">
 			<div class="header only-desktop shadow">
+			<?php echo $pageBuilder->buildMainPageAlerts($activeAlerts, $failures); ?>
 				<div class="header-element logout-button" onclick="logout()">Logout</div>
 			</div>
 			<div class="notice-board shadow">

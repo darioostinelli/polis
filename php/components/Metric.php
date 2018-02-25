@@ -6,7 +6,7 @@ $includePath = $_SERVER['DOCUMENT_ROOT'];
 $includePath .= "/polis/php";
 ini_set('include_path', $includePath);
 include_once 'components/DatabaseConnection.php';
-
+include_once 'components/Alert.php';
 class Metric
 {
 
@@ -226,7 +226,10 @@ class Metric
             return false;
         foreach ($alerts as $alert) {
             $a = new Alert($alert->id_alert);
-            $logs = $this->getUncheckedMetricLogs();
+            if($a->getType() == Alert::$WARNING)
+                $logs = $this->getMetricLogs();
+            else
+                $logs = $this->getUncheckedMetricLogs();
             if ($a->isActive($logs)) {
                 array_push($list, $alert);
             }

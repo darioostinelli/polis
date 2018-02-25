@@ -3,15 +3,13 @@
  */
 function loadThingPage(tag, name){
 	var path = "/polis/dashboard/things/thing.php?tag=";
-	path += tag;
-	path += "&name=" + name;
+	path += tag;	
 	window.location.href = path;
 }
 
 function loadThingSetupPage(tag, name){
 	var path = "/polis/dashboard/things/thingSetup.php?tag=";
-	path += tag;
-	path += "&name=" + name;
+	path += tag;	
 	window.location.href = path;
 }
 

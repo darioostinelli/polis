@@ -110,7 +110,10 @@ class Thing
         } else
             return $result;
     }
-
+    /**
+     * Return the list with alllogs connected to this thing. If there is no metric log, return false
+     * @return boolean|boolean|array
+     */
     function getMetricLogs()
     {
         $query = "SELECT * FROM metrics WHERE thing_tag='" . $this->thing->tag . "';";
@@ -121,7 +124,11 @@ class Thing
         } else
             return $result;
     }
-
+    /**
+     * Return true if a metric belong to this thing
+     * @param string $metricTag
+     * @return boolean
+     */
     function hasMetric($metricTag)
     {
         $metricList = $this->getMetrics();
@@ -153,8 +160,8 @@ class Thing
 
     /**
      * Return an array with all active alerts bound to this thing
-     *
-     * @return mixed;
+     * Check if a failure happened.
+     * @return array
      */
     function getAllActiveAlerts()
     {
@@ -173,7 +180,24 @@ class Thing
                 array_push($list, $item);
             }
         }
-        echo json_encode($list);
+        return $list;
+    }
+
+    /**
+     * Return an array with all failures bound to this thing contained in the table failures
+     * 
+     * @return array
+     */
+    function getFailureList()
+    {
+        $query = "SELECT * FROM `failures` INNER JOIN metrics_definition using(metric_tag) WHERE thing_tag='".$this->getTag()."'";
+        $db = new Database();
+        $result = $db->query($query);
+        if (is_bool($result) && ! $result) {
+            return false;
+        } else
+            return $result;
+
     }
 }
 
