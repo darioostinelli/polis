@@ -20,6 +20,8 @@ use php\components\PageBuilder;
     
     $failures = $user->getFailureList();
     $activeAlerts = $user->getAllActiveAlerts();
+    
+  
     $pb = new PageBuilder($user);
     echo $pb->buildMainPageAlerts($activeAlerts, $failures);
     $pb->buildAlertsPageAlertsList("aaaaaaaaaaaa");

@@ -7,6 +7,7 @@ $includePath .= "/polis/php";
 ini_set('include_path', $includePath);
 include_once 'components/DatabaseConnection.php';
 include_once 'components/Alert.php';
+
 class Metric
 {
 
@@ -165,11 +166,12 @@ class Metric
      * @param string $timestamp
      * @return boolean
      */
-    function saveFailureLog($value, $timestamp)
+    function saveFailureLog($value, $timestamp, $idAlert)
     {
         if (! $this->exists())
             return false;
-        $query = "INSERT INTO `failures`(`time_stamp`, `metric_tag`, `value`) VALUES ('" . $timestamp . "','" . $this->getMetric()->metric_tag . "'," . $value . ")";
+        $query = "INSERT INTO `failures`(`time_stamp`, `metric_tag`, `value`,`id_alert`) VALUES ('" . $timestamp . "','" . $this->getMetric()->metric_tag . "'," . $value . " , " . $idAlert.")";
+       
         $db = new Database();
         $result = $db->query($query);
         if ($result)
@@ -226,7 +228,7 @@ class Metric
             return false;
         foreach ($alerts as $alert) {
             $a = new Alert($alert->id_alert);
-            if($a->getType() == Alert::$WARNING)
+            if ($a->getType() == Alert::$WARNING)
                 $logs = $this->getMetricLogs();
             else
                 $logs = $this->getUncheckedMetricLogs();
@@ -237,6 +239,22 @@ class Metric
         if (count($list) == 0)
             return false;
         return $list;
+    }
+    /**
+     * Return an array with all historical failures linked to this metric. If an error occurs return false
+     * @return boolean|boolean|array
+     */
+    function getFailureList()
+    {
+        if (! $this->exists())
+            return false;
+        $query = "SELECT * FROM failures WHERE metric_tag='" . $this->getTag() . "'";
+        
+        $db = new Database();
+        $result = $db->query($query);
+        if ($result)
+            return $result;
+        return false;
     }
 }
 

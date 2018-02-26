@@ -92,6 +92,28 @@ function thingSetupHandler () {
         			}
         			else{
         				$('.alert').text("Alert created").show(100).delay(2500).hide(100);
+        				location.reload();
+        			}
+        		})
+        		.fail(function(){
+        			$('.alert').text("Server error").show(100);
+        		});
+    }
+    
+    this.deleteAlert = function(id){    	
+    	var data = {};
+    	data.alertId = id;    	
+    	var jsonData = JSON.stringify(data);
+    	$.post('/polis/php/api/deleteAlert.php',
+        		{data : jsonData},
+        		function(data){
+        			var decodedData = JSON.parse(data);
+        			if(decodedData.status=="error"){
+        				$('.alert').text(decodedData.error).show(100);
+        			}
+        			else{
+        				$('.alert').text("Alert deleted").show(100).delay(2500).hide(100);
+        				location.reload();
         			}
         		})
         		.fail(function(){

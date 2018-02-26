@@ -69,10 +69,13 @@ class Alert
     public function getId()
     {
         if ($this->alert)
-            return $this->alert->alert_id;
+            return $this->alert->id_alert;
         return false;
     }
-
+    /**
+     * Return metric tag if alert exists, otherwise return false
+     * @return string | boolean
+     */
     public function getMetric()
     {
         if ($this->alert)
@@ -186,23 +189,39 @@ class Alert
             if ($this->getRule() == Alert::$GREATER_THAN) {
                 if ($log->value > $this->getValue()) {
                     $failure = true;
-                    $metric->saveFailureLog($log->value, $log->time_stamp);
+                    $metric->saveFailureLog($log->value, $log->time_stamp, $this->getId());
                 }
             }
             if ($this->getRule() == Alert::$LESS_THAN) {
                 if ($log->value < $this->getValue()) {
                     $failure = true;
-                    $metric->saveFailureLog($log->value, $log->time_stamp);
+                    $metric->saveFailureLog($log->value, $log->time_stamp, $this->getId());
                 }
             }
             if ($this->getRule() == Alert::$EQUAL_TO) {
                 if ($log->value == $this->getValue()) {
                     $failure = true;
-                    $metric->saveFailureLog($log->value, $log->time_stamp);
+                    $metric->saveFailureLog($log->value, $log->time_stamp, $this->getId());
                 }
             }
         }
         return $failure;
+    }
+    
+    /**
+     * Delete alert and all its historical failure logs
+     */
+    public function deleteAlert(){
+        $db = new Database();
+        $query1 = "DELETE FROM alerts WHERE id_alert=".$this->getId();
+        $query2 = "DELETE FROM failures WHERE id_alert=".$this->getId();
+        $result1 = $db->query($query1);
+        $result2 = $db->query($query2);
+        if (! $result1 || ! $result2) { 
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 

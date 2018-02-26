@@ -35,6 +35,8 @@ $pageBuilder->controlAccessLevel(1); // user type: user or above;
 $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 $failures = $user->getFailureList();
 $activeAlerts = $user->getAllActiveAlerts();
+
+$metricFailures = $metric->getFailureList();
 // echo json_encode($_SESSION['user']);
 ?>
 
@@ -104,11 +106,13 @@ $activeAlerts = $user->getAllActiveAlerts();
 					<h3 class="template-title">Alerts List</h3>
 					<table class="table-template">
 						<tr>
-							<th>TypeRule
+							<th>Type
 							
-							<th>
+							<th>Rule
 							
-							<th>Value</th>
+							<th>Value
+							
+							<th> </th>
 						</tr>
     					<?php echo $pageBuilder->buildAlertsPageAlertsList($metric->getTag())?>
         			</table>
@@ -118,7 +122,7 @@ $activeAlerts = $user->getAllActiveAlerts();
 				<div class="hidden-tab">
 					<h3 class="template-title">Add Alert</h3>
 					<table class="table-template">
-						<tr style="background: #dedede; color: black">
+						<tr style="background: #fefefe; color: black">
 							<th>Type</th>
 							<td>
     							<?php echo $pageBuilder->buildAlertTypeDropdown("alert-type")?>
@@ -142,7 +146,8 @@ $activeAlerts = $user->getAllActiveAlerts();
 				<div class="hidden-tab">
 					<h3 class="template-title">Failures Log</h3>
 					<table class="table-template">
-
+						<tr><th>Date<th>Time<th>Value<th>Unit</th></tr>
+						<?php echo $pageBuilder->buildAlertsPageFailuresList($metricFailures)?>
 					</table>
 
 				</div>
