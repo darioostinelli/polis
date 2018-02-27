@@ -146,7 +146,7 @@ $metricFailures = $metric->getFailureList();
 				<div class="hidden-tab">
 					<h3 class="template-title">Failures Log</h3>
 					<table class="table-template">
-						<tr><th>Date<th>Time<th>Value<th>Unit</th></tr>
+						<tr><th>Date<th>Time<th>Value<th>Unit<th></th></tr>
 						<?php echo $pageBuilder->buildAlertsPageFailuresList($metricFailures)?>
 					</table>
 

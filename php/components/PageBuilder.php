@@ -143,14 +143,14 @@ class PageBuilder
             $failureDetails .= $this->getFailureDetailString($failure->thing_tag, $failure->metric_tag, $failure);
         }
         $failureDetails .= "</table>";
-        $html = "<div class='alert-menu warning'>
+        $html = "<table style='margin:5px'><tr><td class='alert-table'>Warning: <td class='alert-table'><div class='alert-menu warning'>
                     <div>" . $warningNumber . "</div>
                     <div class='alert-details shadow'>" . $warningDetails . "</div>
-                </div>";
-        $html .= "<div class='alert-menu failure'>
+                </div></td></tr>";
+        $html .= "<tr><td class='alert-table'>Failure: <td class='alert-table'><div class='alert-menu failure'>
                     <div>" . $failNumber . "</div>
                     <div class='alert-details shadow'>" . $failureDetails . "</div>
-                </div>";
+                </div></td></tr></table>";
         return $html;
     }
 
@@ -270,7 +270,7 @@ class PageBuilder
     public function buildAlertsPageFailuresList($list){
         $html = "";
         if(!$list)
-            return "<tr><td>-<td>-<td>-<td>-</td></tr>";
+            return "<tr><td>-<td>-<td>-<td>-<td>-</td></tr>";
         $metric = new Metric($list[0]->metric_tag);
         $unit = $metric->getUnit();
         foreach($list as $failure){            
@@ -280,7 +280,8 @@ class PageBuilder
             $html .= "<tr><td>". $date->year . "-" . $date->month . "-" . $date->day;
             $html .= "<td>" . $time->hour . ":" . $time->minute;
             $html .= "<td>" . $failure->value;
-            $html .= "<td>". $unit . "</td></tr>";
+            $html .= "<td>". $unit;
+            $html .= "<td onclick='page.deleteFailureLog(\"".$failure->id_failure."\")'> <img title='Delete' src='/polis/src/img/icons/trash-can.svg' style='height:20px'/></td></tr>";
         }
         return $html;
     }

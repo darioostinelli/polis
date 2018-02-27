@@ -120,6 +120,26 @@ function thingSetupHandler () {
         			$('.alert').text("Server error").show(100);
         		});
     }
+    this.deleteFailureLog = function(id){
+    	var data = {};
+    	data.failureId = id;    	
+    	var jsonData = JSON.stringify(data);
+    	$.post('/polis/php/api/deleteFailureLog.php',
+        		{data : jsonData},
+        		function(data){
+        			var decodedData = JSON.parse(data);
+        			if(decodedData.status=="error"){
+        				$('.alert').text(decodedData.error).show(100);
+        			}
+        			else{
+        				$('.alert').text("Failure log deleted").show(100).delay(2500).hide(100);
+        				location.reload();
+        			}
+        		})
+        		.fail(function(){
+        			$('.alert').text("Server error").show(100);
+        		});
+    }
 }
 
 appendMetricToTable = function(list){
