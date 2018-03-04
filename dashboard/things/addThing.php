@@ -17,6 +17,8 @@ $user = new User($_SESSION['user']->username);
 $pageBuilder = new PageBuilder($user);
 $pageBuilder->controlAccessLevel(1); //user type: user or above;
 $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
+$failures = $user->getFailureList();
+$activeAlerts = $user->getAllActiveAlerts();
 // echo json_encode($_SESSION['user']);
 ?>
 
@@ -59,7 +61,8 @@ $menuItems = $pageBuilder->buildMenu("THING_SETUP_PAGE");
 		</div>
 		<div class="dashboard">
 			<div class="header only-desktop shadow">
-				<div class="header-element" onclick="logout()">Logout</div>
+				<?php echo $pageBuilder->buildMainPageAlerts($activeAlerts, $failures); ?>
+				<div class="header-element logout-button" onclick="logout()">Logout</div>
 			</div>
 			<div class="notice-board shadow">
 				<h2 class="template-title"><a href="/polis/dashboard/things/thingsSetup.php">Thing Setup</a> > Add Thing</h2>

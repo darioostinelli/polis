@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 14, 2018 alle 18:24
+-- Creato il: Feb 25, 2018 alle 17:16
 -- Versione del server: 10.1.28-MariaDB
 -- Versione PHP: 5.6.32
 
@@ -21,6 +21,50 @@ SET time_zone = "+00:00";
 --
 -- Database: `polis`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `alerts`
+--
+
+CREATE TABLE `alerts` (
+  `id_alert` int(11) NOT NULL,
+  `metric_tag` varchar(12) COLLATE utf8_bin NOT NULL,
+  `rule` varchar(5) COLLATE utf8_bin NOT NULL,
+  `value` float NOT NULL,
+  `type` varchar(30) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dump dei dati per la tabella `alerts`
+--
+
+INSERT INTO `alerts` (`id_alert`, `metric_tag`, `rule`, `value`, `type`) VALUES
+(2, 'aaaaaaaaaaaa', '>', 85, 'WARNING'),
+(3, 'aaaaaaaaaaaa', '>', 130, 'FAILURE'),
+(4, 'baaaaaaaaaaa', '<', 2, 'WARNING'),
+(5, 'aaaaaaaaaaaa', '>', 95, 'WARNING');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `failures`
+--
+
+CREATE TABLE `failures` (
+  `id_failure` int(11) NOT NULL,
+  `time_stamp` datetime NOT NULL,
+  `metric_tag` varchar(12) COLLATE utf8_bin NOT NULL,
+  `value` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dump dei dati per la tabella `failures`
+--
+
+INSERT INTO `failures` (`id_failure`, `time_stamp`, `metric_tag`, `value`) VALUES
+(1, '2018-02-24 15:28:33', 'aaaaaaaaaaaa', 135);
 
 -- --------------------------------------------------------
 
@@ -53,36 +97,21 @@ CREATE TABLE `metrics` (
   `thing_tag` varchar(12) COLLATE utf8_bin NOT NULL,
   `metric_definition_tag` varchar(12) COLLATE utf8_bin NOT NULL,
   `value` float NOT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `checked` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dump dei dati per la tabella `metrics`
 --
 
-INSERT INTO `metrics` (`metric_id`, `thing_tag`, `metric_definition_tag`, `value`, `time_stamp`) VALUES
-(1, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.05, '2018-01-23 17:17:21'),
-(2, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.22, '2018-01-25 09:25:17'),
-(4, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 122, '2018-01-25 09:26:56'),
-(5, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 128, '2018-01-25 09:27:00'),
-(6, 'bbbbbbbbbbbb', 'caaaaaaaaaaa', -3, '2018-02-06 12:58:37'),
-(7, 'cccccccccccc', 'daaaaaaaaaaa', 25, '2018-02-06 13:03:12'),
-(8, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 85, '2018-02-06 16:05:08'),
-(9, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 90, '2018-02-06 16:04:12'),
-(10, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 95, '2018-02-06 16:03:14'),
-(11, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 87, '2018-02-06 16:02:17'),
-(12, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 1.99, '2018-02-14 15:39:06'),
-(13, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.02, '2018-02-14 15:39:15'),
-(14, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.1, '2018-02-14 15:39:18'),
-(15, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 1.95, '2018-02-14 15:39:25'),
-(16, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 55, '2018-02-14 15:41:26'),
-(17, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 59, '2018-02-14 15:41:30'),
-(18, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 65, '2018-02-14 15:41:33'),
-(19, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 59, '2018-02-14 15:41:36'),
-(20, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 35, '2018-02-14 15:41:43'),
-(21, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 15, '2018-02-14 15:41:47'),
-(22, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 0, '2018-02-14 15:41:50'),
-(23, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 35, '2018-02-14 15:41:53');
+INSERT INTO `metrics` (`metric_id`, `thing_tag`, `metric_definition_tag`, `value`, `time_stamp`, `checked`) VALUES
+(27, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 95, '2018-02-24 14:27:31', 1),
+(28, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 135, '2018-02-24 14:28:33', 1),
+(29, 'aaaaaaaaaaaa', 'aaaaaaaaaaaa', 105, '2018-02-24 14:29:07', 1),
+(30, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2.1, '2018-02-24 14:31:03', 0),
+(31, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 2, '2018-02-24 14:31:08', 0),
+(32, 'aaaaaaaaaaaa', 'baaaaaaaaaaa', 1.9, '2018-02-24 14:31:11', 0);
 
 -- --------------------------------------------------------
 
@@ -137,7 +166,8 @@ INSERT INTO `things` (`tag`, `name`, `family_tag`, `user_type`) VALUES
 ('dddddddddddd', 'Temperatura Zona Notte', '123456789012', 2),
 ('eeeeeeeeeeee', 'Luci Giardino', '123456789012', 1),
 ('zzzzzzzzzzzz', 'Thing Altra Familgia', '000000000000', 3),
-('rsI2bBDAbw3I', 'Frigorifero', 'a7hzR6ogCIx2', 2);
+('rsI2bBDAbw3I', 'Frigorifero', 'a7hzR6ogCIx2', 2),
+('wwwwwwwwwwww', 'Nuovo', '123456789012', 2);
 
 -- --------------------------------------------------------
 
@@ -190,6 +220,18 @@ INSERT INTO `users_definition` (`id`, `name`, `description`, `access_level`) VAL
 --
 
 --
+-- Indici per le tabelle `alerts`
+--
+ALTER TABLE `alerts`
+  ADD PRIMARY KEY (`id_alert`);
+
+--
+-- Indici per le tabelle `failures`
+--
+ALTER TABLE `failures`
+  ADD PRIMARY KEY (`id_failure`);
+
+--
 -- Indici per le tabelle `families`
 --
 ALTER TABLE `families`
@@ -232,10 +274,22 @@ ALTER TABLE `users_definition`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `alerts`
+--
+ALTER TABLE `alerts`
+  MODIFY `id_alert` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT per la tabella `failures`
+--
+ALTER TABLE `failures`
+  MODIFY `id_failure` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT per la tabella `metrics`
 --
 ALTER TABLE `metrics`
-  MODIFY `metric_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `metric_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT per la tabella `metrics_definition`

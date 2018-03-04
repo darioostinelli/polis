@@ -3,21 +3,26 @@
  */
 function loadThingPage(tag, name){
 	var path = "/polis/dashboard/things/thing.php?tag=";
-	path += tag;
-	path += "&name=" + name;
+	path += tag;	
 	window.location.href = path;
 }
 
 function loadThingSetupPage(tag, name){
 	var path = "/polis/dashboard/things/thingSetup.php?tag=";
-	path += tag;
-	path += "&name=" + name;
+	path += tag;	
 	window.location.href = path;
 }
 
 function loadUserPage(username){
 	var path = "/polis/dashboard/users/user.php?username=";
 	path += username;
+	
+	window.location.href = path;
+}
+
+function loadAlertSetup(tag){
+	var path = "/polis/dashboard/alerts/alerts.php?metric_tag=";
+	path += tag;
 	
 	window.location.href = path;
 }

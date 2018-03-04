@@ -29,6 +29,10 @@ if(!$user->hasAccessTo($thing)){
 }
 $pageBuilder = new PageBuilder($user);
 $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
+$failures = $user->getFailureList();
+$activeAlerts = $user->getAllActiveAlerts();
+$thingAlerts = $thing->getAllActiveAlerts();
+$thingFailures = $thing->getFailureList();
 // echo json_encode($_SESSION['user']);
 ?>
 
@@ -48,8 +52,9 @@ $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
 <script src="/polis/js/librerie/lodash.js"></script>
 <link rel="shortcut icon" href="/polis/logo.ico" />
 <script>
+var thing;
 	$().ready(function(){
-		var thing = new thingHandler();
+	    thing = new thingHandler();
 		thing.getLogsByMetrics();
 		});
 </script>
@@ -73,15 +78,37 @@ $menuItems = $pageBuilder->buildMenu("MIAN_PAGE");
 		</div>
 		<div class="dashboard">
 			<div class="header only-desktop shadow">
-				<div class="header-element" onclick="logout()">Logout</div>
+				<?php echo $pageBuilder->buildMainPageAlerts($activeAlerts, $failures); ?>
+				<div class="header-element logout-button" onclick="logout()">Logout</div>
 			</div>
 			<div class="notice-board shadow">			
-				<h2 class="template-title"><a href="/polis/dashboard/mainPage.php">Things List</a> > <?php echo $_GET['name'];?></h2>
+				<h2 class="template-title"><a href="/polis/dashboard/mainPage.php">Things List</a> > <?php echo $thing->getName();?></h2>
+				<div class="tab-menu">
+					<div class="tab-menu-element" onclick="thing.switchTab(this);">Metrics</div>
+					<div class="tab-menu-element" onclick="thing.switchTab(this);">Active Alerts</div>
+					<div class="tab-menu-element" onclick="thing.switchTab(this);">Failures</div>
 				
+				</div>
 				<div class="alert" onclick="$(this).hide(100)"></div>
-				<?php  echo '<span style="color:white; margin-left:20px">Display:</span> '.$pageBuilder->buildChartDisplayOptionsDropdown();?>
-				<div>    				
-    				<div id="metrics-container"></div>
+				<!-- Metrics tab -->
+				<div class="hidden-tab" style="display:block">
+					<h3 class="template-title">Metrics</h3>
+    				<?php  echo '<span style="color:white; margin-left:20px">Display:</span> '.$pageBuilder->buildChartDisplayOptionsDropdown();?>
+    				<div>    				
+        				<div id="metrics-container"></div>
+    				</div>
+				</div>
+				<!-- Alerts tab -->
+				<div class="hidden-tab">
+					<h3 class="template-title">Alerts</h3>
+    				<?php echo $pageBuilder->buildThingPageAlerts($thingAlerts)?>
+    				
+				</div>
+				<!-- Failures tab -->
+				<div class="hidden-tab">
+					<h3 class="template-title">Failures</h3>
+    				<?php echo $pageBuilder->buildThingPageFailuresList($thingFailures)?>
+    				
 				</div>
 			</div>
 		</div>
