@@ -48,6 +48,11 @@ function thingHandler () {
     	}
   
     }
+    this.switchTab = function(tab){
+      	var index = $('.tab-menu-element').index($(tab));
+      	$('.hidden-tab').hide().eq(index).show();   
+      	$('.alert').hide(100);
+      }
 }
 
 displayMetric = function(metric, unit, list){

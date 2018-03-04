@@ -477,6 +477,35 @@ body {
 .alert-menu:hover .alert-details {
 	display: block;
 }
+
+.thing-page-alert{
+	padding: 30px;
+	margin: 20px;
+}
+.thing-page-alert h4{
+	margin: 0px;
+	border-bottom: 1px solid;
+}
+.thing-page-alert p{
+	margin-bottom: 0;
+}
+.thing-page-warning{
+	background: #f4c242;
+	color: black;
+	border: 3px solid #f28522;
+	font-style: italic;
+}
+.thing-page-failure{
+	background: #e83061;
+	color: white;
+	border: 3px solid #ff1515;
+}
+
+.thing-page-info{
+	background: #0fbef9;
+	color: white;
+	border: 3px solid #0679d7;
+}
 /*** 	DESKTOP 	***/
 @media only screen and (orientation: landscape) {
 	.header-menu {

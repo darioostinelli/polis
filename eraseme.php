@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/polis/styles/polis.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<script src="/polis/js/librerie/jquery-3.2.1.js"></script>
 <script src="/polis/js/componenti/mainPage.js"></script>
 <script src="/polis/js/funzioni/mainPage.js"></script>
 <?php
@@ -16,13 +17,11 @@ use php\components\PageBuilder;
     include_once 'components/Metric.php';   
     include_once 'components/User.php'; 
     include_once 'components/PageBuilder.php'; 
-    $user = new User("admin");  
-    
-    $failures = $user->getFailureList();
-    $activeAlerts = $user->getAllActiveAlerts();
-    
+    $thing = new Thing("aaaaaaaaaaaa");
+    $failures = $thing->getFailureList();
+    $alerts = $thing->getAllActiveAlerts();    
   
-    $pb = new PageBuilder($user);
-    echo $pb->buildMainPageAlerts($activeAlerts, $failures);
-    $pb->buildAlertsPageAlertsList("aaaaaaaaaaaa");
+   
+    $pb = new PageBuilder("aa");
+    echo $pb->buildThingPageFailuresList($failures);
 ?>

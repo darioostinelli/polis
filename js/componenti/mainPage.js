@@ -94,6 +94,7 @@ function mainPageHandler () {
   		});
   }
   
+  
 }
 addThing = function(thingName, thingTag){
 	thingHtml = '<div class="cell thing-template" onclick="loadThingPage(\'%s\',\'%s\')">\
