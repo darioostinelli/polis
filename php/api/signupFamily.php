@@ -45,9 +45,10 @@
     $result = $db->query($sql);
     if($result){
         echo '{"status":"success"}';
+		$user = new User($signupData->user);
         $_SESSION['user'] = $user->getUser();
         $email = new EmailSender($signupData->email);
-        $email->sendFamilyTagEmail("Welcom to Polis", $tag);  
+        $email->sendFamilyTagEmail("Welcome to Polis", $tag);  
     }
     else{
         die('{"status":"error","error":"Server error, please try later"}');

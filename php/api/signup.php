@@ -28,6 +28,7 @@
     $sql = "INSERT INTO `users`(`family_tag`, `user_name`, `password`, `user_type`, `email`) VALUES ('".$signupData->family."','".$signupData->user."','".$signupData->pass."', 3 ,'".$signupData->email."')";
     //default user type is guest
     $result = $db->query($sql);
+    $user = new User($signupData->user);
     if($result){
         echo '{"status":"success"}';
         $_SESSION['user'] = $user->getUser();
