@@ -10,7 +10,13 @@ class User
 {
 
     private $user;
-
+    public static $ADMIN_TYPE = 1;
+    public static $USER_TYPE = 2;
+    public static $GUEST_TYPE = 3;
+    
+    public static $ADMIN_LEVEL = 0;
+    public static $USER_LEVEL = 1;
+    public static $GUEST_LEVEL = 2;
     function __construct($username)
     {
         $db = new Database();
@@ -162,6 +168,36 @@ class User
             return false;
         } else
             return $result;
+    }
+    /**
+     * Update user type by setting user_type column equlal to $typeId 
+     * Return true if update succeeds
+     * @param integer $typeId
+     * @return boolean
+     */
+    public function updateUserType($typeId){
+        $query = "UPDATE users SET user_type=".$typeId." WHERE user_name='".$this->getUsername()."'";
+       
+        $db = new Database();
+        $result = $db->query($query);
+        if (is_bool($result) && ! $result) {
+            return false;
+        } else
+            return true;
+    }
+    /**
+     * Delete user
+     * Return true if update succeeds    
+     * @return boolean
+     */
+    public function deleteUser(){
+        $query = "DELETE FROM users WHERE user_name='".$this->getUsername()."'";
+        $db = new Database();
+        $result = $db->query($query);
+        if (is_bool($result) && ! $result) {
+            return false;
+        } else
+            return true;
     }
 }
 ?>

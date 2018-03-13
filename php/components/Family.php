@@ -65,5 +65,21 @@
             }
             return $list;
         }
+        /**
+         * Return the number of admin users who belong to the family
+         * If an error occurs, return false
+         * @return integer | boolean
+         */
+        public function getAdminNumber(){
+            $db = new Database();
+            $query = "SELECT * FROM users WHERE family_tag='".$this->family->tag."' AND user_type = 1";
+            $result =  $db->query($query);
+            
+            if(!$result)
+                return false;
+                else{
+                    return count($result);
+                }
+        }
     }
 ?>
