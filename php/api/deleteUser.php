@@ -27,22 +27,21 @@ if($setupUser->getFamily() != $user->getFamily()){
 }
 
 $family = new Family($user->getFamily());
-if($family->getAdminNumber() == 1) //family has only ONE admin. If you try to change admin's type to another type, retrun error
+if($family->getAdminNumber() == 1) //family has only ONE admin. If you try to delete, retrun error
 {
-    if($setupUser->getUserTypeId() == User::$ADMIN_TYPE && $data->userType != User::$ADMIN_TYPE){
+    if($setupUser->getUserTypeId() == User::$ADMIN_TYPE){
         die('{"status":"error","error":"Family must have at least one admin"}');
     }
 }
-if(!$setupUser->updateUserType($data->userType)){
+if(!$setupUser->deleteUser()){
     die('{"status":"error","error":"Internal error"}');
 }
 else {
-    echo '{"status":"success"}';
-    if($setupUser->getUsername() == $user->getUsername())//update session
-    {
-        $user = new User($setupUser->getUsername()); //recreate the object
-        $_SESSION['user'] = $user->getUser();
-        unset($_SESSION['thingList']);//unset thing cache
+    if($setupUser->getUsername() == $user->getUsername()){
+        echo '{"status":"success","logout":true}'; //user is deleting himself. Logout
     }
+    else {
+        echo '{"status":"success","logout":false}';//user is deleting another user. Do not logout
+    }    
 }
 ?>

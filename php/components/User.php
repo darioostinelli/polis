@@ -185,6 +185,20 @@ class User
         } else
             return true;
     }
+    /**
+     * Delete user
+     * Return true if update succeeds    
+     * @return boolean
+     */
+    public function deleteUser(){
+        $query = "DELETE FROM users WHERE user_name='".$this->getUsername()."'";
+        $db = new Database();
+        $result = $db->query($query);
+        if (is_bool($result) && ! $result) {
+            return false;
+        } else
+            return true;
+    }
 }
 ?>
 
