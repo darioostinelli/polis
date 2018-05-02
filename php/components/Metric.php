@@ -256,5 +256,25 @@ class Metric
             return $result;
         return false;
     }
+    
+    /**
+     * 
+     */
+    function getLastValue(){
+        $sql = "SELECT metrics_definition.name, metrics_definition.unit, metrics.value, metrics.time_stamp
+                FROM metrics_definition
+                JOIN metrics on metrics_definition.metric_tag = metrics.metric_definition_tag
+                WHERE metrics_definition.metric_tag = '".$this->getTag()."'
+                AND metrics.time_stamp = (
+                    SELECT MAX(metrics.time_stamp)
+                    FROM metrics
+                    WHERE metrics.metric_definition_tag = '".$this->getTag()."'
+                )";
+        $db = new Database();
+        $result = $db->query($sql);
+        if ($result)
+            return $result[0];
+        return false;
+    }
 }
 
